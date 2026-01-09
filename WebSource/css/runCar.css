@@ -1,0 +1,140 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* 右下角控制台 */
+#control-panel {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 240px;
+    background: rgba(255,255,255,0.95);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+    font-family: Arial;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#control-panel h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+
+/* 清空按钮 */
+#clear-all-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+    background: #ff6666;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+}
+#clear-all-btn:hover {
+    background: #ff4d4d;
+}
+
+#car-list {
+    margin-top: 10px;
+    height: 160px;
+    overflow-y: auto;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#car-list .empty {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: #666;       /* ★ 更清晰 */
+    font-size: 14px;
+
+    background: #f2f2f2;
+    border-radius: 6px;
+}
+
+
+.car-item {
+    padding: 6px;
+    background: #f2f2f2;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.car-label {
+    font-size: 14px;
+    color: #333;
+}
+
+.car-delete-btn {
+    background: #ff4d4f;
+    border: none;
+    padding: 4px 8px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.car-delete-btn:hover {
+    background:#ff7875;
+}
+#add-multi-car-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+    background: #67C23A;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+}
+#add-multi-car-btn:hover {
+    background: #85ce61;
+}
+
+
+#add-car-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    background: #409EFF;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#add-car-btn:hover {
+    background: #66b1ff;
+}
+
+input[type=range] {
+    width: 100%;
+}

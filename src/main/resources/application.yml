@@ -1,11 +1,22 @@
 # application.yml
 server:
   port: 9090
-datasource:
-  url: "jdbc:mysql://localhost/tran_db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai"
-  username: root
-  password: 123456
-  table_name: "poi"
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost/tran_db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai"
+    username: root
+    password: 123456
+    tableName: "location"
+    sql: "INSERT INTO location(location_name,location,type,address,id,created_at,update_at,role) value(?,?,?,?,?,?,?,?) on  DUPLICATE key update update_at=values(update_at)"
+    jpa:
+      open-in-view: false
+amap:
+  webserviceKey: "1d830d8718ed7ad1452d6bbdfe3f447a"
+
+api:
+  key: ["16cda5b3f9138bebf5db623d4285866e","16cda5b3f9138bebf5db623d4285866e","8e61e1033f71bb5c37ff3e471a689e34","cde7b6cb4e507a64d4b24bf88f2c86a9"]
+  apiUrl: "https://restapi.amap.com/v5/place/text?types=010000&region=四川省&page_size=25&page_num="
+  urlSuffix: "&key="
 #spring:
 #  application:
 #    name: works

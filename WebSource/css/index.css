@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* 全局设置,把所有样式清空 */
+
+html {
+    height: 100%;
+    background-image: url(../img/back.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#首页 {
+    color: rgb(32, 60, 198);
+}
+
+header {
+    background-color: rgba(191, 183, 183, 0.95);
+    top: 0;
+    /*到页首的距离为0*/
+    height: 80px;
+    width: 100%;
+    /*宽度填充整个网页*/
+    position: fixed;
+    /*保证header不随页面滑动*/
+    z-index: 9999;
+    /* 优先级设为9999 */
+}
+
+header li {
+    display: inline;
+    padding: 10px;
+    position: relative;
+}
+
+.list {
+    display: flex;
+}
+
+.list a{
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(191, 183, 183, 0.95);
+    right: 10px;
+}
+
+.list a:hover {
+    background-color: gainsboro;
+    display: inline;
+}
+
+header .list{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+header h1 {
+    font-size: 30px;
+    position: absolute;
+    top:15px;
+    left: 30px;
+    cursor: default;
+}
+
+.headers h1 {
+    font-size: 30px;
+}
+
+.headers {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.headers h1 {
+    margin-top: 180px;
+}
+
+.headers p {
+    margin: 20px
+}
+
+.headers a {
+    margin: 5px;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 20px;
+    /*设置边框圆角化程度*/
+    border: 1px solid;
+}
+
+.headers a:hover {
+    padding: 6px 12px;
+    background-color: gainsboro;
+}
+
+/*设置当鼠标悬停在其上时的css样式*/
+
+section {
+
+    margin: 2px;
+    padding: 20px 50px;
+}
+
+#banner {
+    border-radius: 20px;
+    width: 800px;
+    height: 400px;
+    /*设置图片区域的宽高，为js的设计奠基*/
+    position: absolute;
+    overflow: hidden;
+    /*超出banner的部分隐藏*/
+    margin: 0;
+    padding: 0;
+
+    left: 50%;
+    margin-left: -400px;
+    /*使banner水平居中*/
+}
+
+#imagelist {
+    width: 3200px;
+    /*4倍banner的width*/
+    height: 400px;
+}
+
+#imagelist img {
+    width: 800px;
+    height: 400px;
+}
+
+#imagelist li {
+    float: left;
+    /*使其左横排*/
+}
+
+#dots {
+    display: flex;
+    /*将#dot设置为flexbox*/
+    width: 800px;
+    position: absolute;
+
+    left: 50%;
+    margin-left: -400px;
+    /*使之水平居中*/
+    bottom: 5px;
+    cursor: pointer;
+    /*鼠标悬停时提示可点击(实际上未实现这一功能)*/
+    justify-content: center;
+    /*使其子元素li水平居中*/
+}
+
+#dots li {
+    bottom: 0px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(178, 178, 177);
+    border-radius: 50%;
+    /*画一个小圆点*/
+    margin: 10px;
+}
+
+blockquote {
+    color: black
+}
+
+.ban {
+    height: 400px;
+    width: 800px;
+}
+
+.linian {
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    /*flexbox方向为栏，竖向排列*/
+    align-items: center;
+    justify-content: center;
+}
+
+.quote p {
+    border: 1px soild;
+}
+
+.xuanyan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xuanyan p {
+    border: 1px solid;
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
+.menu {
+    display: none;
+}
+
+.daohang {
+    display: none;
+}
+
+.prev {
+    background-color: rgba(191, 183, 183, 0.8);
+    width: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /*文字水平居于flexbox的开头，垂直居中*/
+    position: absolute;
+
+    top: 50%;
+    margin-top: -25px;
+    /*使prev垂直居中*/
+    cursor: pointer;
+}
+
+.next {
+    background-color: rgba(191, 183, 183, 0.8);
+    width: 30px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -25px;
+    cursor: pointer;
+}
+
+
+/* 响应式设计 */
+/* @media screen and (max-width:800px)
+/*当屏幕宽度小于800px时，css样式改变
+    {
+    .list {
+        display: none;
+        /*list消失
+    }
+
+    header h1 {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .menu {
+        display: block;
+        background-color: transparent;
+        font-size: 39px;
+        border: none;
+        position: absolute;
+        left: 40px;
+        top: 24px;
+        cursor: pointer;
+        /*汉堡菜单出现
+    }
+
+
+    .menu a {
+        color: #000;
+        display: block;
+        text-decoration: none;
+    }
+
+    .menu a:hover {
+        text-decoration: none;
+    }
+
+    #banner {
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        justify-items: center;
+        align-items: center;
+        left: 50%;
+        margin-left: -250px;
+    }
+
+    #imagelist {
+        width: 2000px;
+        height: 250px;
+        text-align: center;
+    }
+
+    #imagelist img {
+        width: 500px;
+        height: 250px;
+    }
+
+    #imagelist li {
+        float: left;
+
+    }
+
+    .ban {
+        height: 250px;
+        width: 500px;
+    }
+} */

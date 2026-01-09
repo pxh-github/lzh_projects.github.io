@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>路径规划演示</title>
+
+    <link rel="stylesheet" href="../css/route.css">
+    <link rel="stylesheet" href="../css/sidebar.css">、
+    <link rel="dns-prefetch" href="//webapi.amap.com">
+    <link rel="preconnect" href="https://webapi.amap.com" crossorigin>
+    <link rel="dns-prefetch" href="//restapi.amap.com">
+    <link rel="preconnect" href="https://restapi.amap.com" crossorigin>
+
+    <script>
+        window._AMapSecurityConfig = {
+            securityJsCode: "f68e6b064bbd76011d899deded77ccb8"
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ad6f8e93565f8cc0388a2998ca47e4fe"></script>
+
+
+    <script src="../js/axios.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="panel">
+    <h2>路径规划控制台</h2>
+
+    <button id="btn-load-poi">加载 POI 数据</button>
+
+    <div id="poi-list"></div>
+
+    <hr>
+
+    <button id="btn-plan">规划路径</button>
+
+    <hr>
+
+    <button id="btn-start">开始演示</button>
+    <button id="btn-pause">暂停</button>
+    <button id="btn-resume">继续</button>
+    <button id="btn-stop">结束</button>
+</div>
+
+<script src="../js/route.js"></script>
+<script src="../js/sidebar.js"></script>
+</body>
+</html>

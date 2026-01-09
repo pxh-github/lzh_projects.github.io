@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多小车循环物流模拟</title>
+    <link rel="stylesheet" href="../css/cycle.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="dns-prefetch" href="//webapi.amap.com">
+    <link rel="preconnect" href="https://webapi.amap.com" crossorigin>
+    <link rel="dns-prefetch" href="//restapi.amap.com">
+    <link rel="preconnect" href="https://restapi.amap.com" crossorigin>
+
+    <!-- 高德地图 JSAPI 2.0 -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=1d830d8718ed7ad1452d6bbdfe3f447a"></script>
+    <script>
+        window._AMapSecurityConfig = {
+            securityJsCode: "f68e6b064bbd76011d899deded77ccb8"
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=ad6f8e93565f8cc0388a2998ca47e4fe"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div id="control-panel">
+
+    <h2>🚗 小车控制台</h2>
+
+    <button id="add-car-btn">添加小车</button>
+
+    <div class="slider-block">
+        <label>速度控制：<span id="speed-value">2000</span></label>
+        <input type="range" id="speed-range" min="2000" max="6000" value="0">
+    </div>
+
+    <h3>小车列表</h3>
+    <div id="car-list"></div>
+</div>
+
+<script src="../js/cycle.js"></script>
+<script src="../js/sidebar.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>自定义点标记</title>
+    <link rel="stylesheet" type="text/css" href="../css/showMap.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="dns-prefetch" href="//webapi.amap.com">
+    <link rel="preconnect" href="https://webapi.amap.com" crossorigin>
+    <link rel="dns-prefetch" href="//restapi.amap.com">
+    <link rel="preconnect" href="https://restapi.amap.com" crossorigin>
+
+    <style>
+        html,
+        body,
+        #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .custom-content-marker {
+            position: relative;
+            width: 25px;
+            height: 34px;
+        }
+
+        .custom-content-marker img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .custom-content-marker .close-btn {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            width: 15px;
+            height: 15px;
+            font-size: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            line-height: 15px;
+            box-shadow: -1px 1px 1px rgba(10, 10, 10, .2);
+        }
+
+        .custom-content-marker .close-btn:hover {
+            background: #666;
+        }
+    </style>
+</head>
+
+<body>
+<div id="map">
+    <div id="container"></div>
+    <div class='input-card'>
+        <div class="input-item">
+            <input type="checkbox" onclick="toggleScale(this)"/>比例尺
+        </div>
+
+        <div class="input-item">
+            <input type="checkbox" id="overview" checked onclick="toggleOverViewShow(this)"/>显示图标
+        </div>
+    </div>
+</div>
+<div id="poi-legend"></div>
+<!-- 高德 JS API --><script>
+    window._AMapSecurityConfig = {
+        securityJsCode: "f68e6b064bbd76011d899deded77ccb8"
+    };
+</script>
+<script src="https://webapi.amap.com/maps?v=2.0&key=ad6f8e93565f8cc0388a2998ca47e4fe&plugin=AMap.Scale"></script>
+<script src="../js/sidebar.js"></script>
+
+<script src="../js/axios.min.js"></script>
+<script type="text/javascript" src="../js/showMap.js"></script>
+</body>
+
+</html>

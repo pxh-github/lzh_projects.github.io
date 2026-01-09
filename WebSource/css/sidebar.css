@@ -1,0 +1,112 @@
+/* ===== Sidebar (global) ===== */
+.sidebar-toggle {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 9999;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(20, 20, 20, 0.85);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 260px;
+    height: 100vh;
+    background: #111;
+    color: #fff;
+    transform: translateX(-110%);
+    transition: transform 0.22s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar.open + .sidebar-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar-header {
+    padding: 16px 16px 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-close {
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+}
+.sidebar-close:hover { background: rgba(255,255,255,0.08); }
+
+.sidebar-nav {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: rgba(255,255,255,0.86);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.2;
+    background: transparent;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.sidebar-nav a.active,
+.sidebar-nav a[aria-current="page"] {
+    background: rgba(0, 160, 255, 0.22);
+    color: #fff;
+    outline: 1px solid rgba(0, 160, 255, 0.45);
+}
+
+/* 小屏优化 */
+@media (max-width: 480px) {
+    .sidebar { width: 78vw; }
+}

@@ -1,0 +1,97 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#map {
+    top:0;
+    width: calc(100% - 200px);
+    height:100%;
+    position: fixed;
+}
+
+#首页 {
+    color: rgb(32, 60, 198);
+}
+
+/* 导航栏设计 */
+.list1 {
+    display: flex;
+}
+
+.list1 a {
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(191, 183, 183, 0.95);
+    right: 10px;
+}
+
+/* 鼠标浮动 */
+.list1 a:hover {
+    background-color: gainsboro;
+    display: inline;
+}
+
+header li {
+    display: inline;
+    padding: 10px;
+    position: relative;
+}
+
+header .list1 {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+/* jotanglm位置大小设计 */
+header h1 {
+    font-size: 30px;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    cursor: default;
+}
+
+header {
+    background-color: rgba(191, 183, 183, 0.95);
+    top: 0;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+}
+
+
+#panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%; /* 👈 正确高度 */
+
+    background: #f8f8f8;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-left: 1px solid #ccc;
+}
+
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#poi-list {
+    margin-top: 10px;
+}

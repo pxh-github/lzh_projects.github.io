@@ -1,0 +1,236 @@
+html {
+    font-size: 12px;
+}
+.amap-copyright{
+    box-sizing: content-box
+}
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.input-textarea{
+    color:grey;
+    height:8em;
+    overflow:auto;
+    border-radius:0.4rem;
+    border:1px solid #ced4da;
+    margin-bottom:1rem;
+}
+
+#首页 {
+    color: rgb(32, 60, 198);
+}
+
+/* 导航栏设计 */
+.list1 {
+    display: flex;
+}
+
+.list1 a {
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(191, 183, 183, 0.95);
+    right: 10px;
+}
+
+/* 鼠标浮动 */
+.list1 a:hover {
+    background-color: gainsboro;
+    display: inline;
+}
+
+header li {
+    display: inline;
+    padding: 10px;
+    position: relative;
+}
+
+header .list1 {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+/* jotanglm位置大小设计 */
+header h1 {
+    font-size: 30px;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    cursor: default;
+}
+
+header {
+    background-color: rgba(191, 183, 183, 0.95);
+    top: 0;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: 1.5;
+    font-weight: 300;
+    color: #111213;
+}
+
+#map {
+    top:0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+/* DOM Marker 样式 */
+.marker-dom {
+    width: 36px;
+    height: 36px;
+    transform: translate(-18px, -18px); /* anchor center */
+}
+
+.marker-dom img {
+    width: 36px;
+    height: 36px;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Legend (右侧图例) */
+#poi-legend {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 150px;
+    z-index: 999;
+}
+
+#poi-legend h4 {
+    margin: 0 0 8px 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.legend-item img {
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+}
+
+/*hr {*/
+/*    margin: 0.5rem 0;*/
+/*    box-sizing: content-box;*/
+/*    height: 0;*/
+/*    overflow: visible;*/
+/*    border: 0;*/
+/*    border-top: 1px solid rgba(0, 0, 0, .1)*/
+/*}*/
+
+/*p {*/
+/*    margin-top: 0;*/
+/*    margin-bottom: 0;*/
+/*}*/
+
+/*label {*/
+/*    display: inline-block;*/
+/*    margin-bottom: 0.4rem;*/
+/*}*/
+
+/*label, .btn {*/
+/*    margin-left: 0;*/
+/*    font-size: 1rem;*/
+/*}*/
+
+/*button, input, select {*/
+/*    margin: 0;*/
+/*    font-family: inherit;*/
+/*    font-size: inherit;*/
+/*    line-height: inherit;*/
+/*    overflow: visible;*/
+/*    text-transform: none*/
+/*}*/
+
+/*[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {*/
+/*    padding: 0;*/
+/*    border-style: none;*/
+/*}*/
+
+input[type=checkbox], input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    margin: 0 0.5rem 0 0;
+}
+
+.input-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+}
+
+.input-item:last-child {
+    margin-bottom: 0;
+}
+
+.input-item>select, .input-item>input[type=text], .input-item>input[type=date] {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.input-item>select:not(:last-child), .input-item>input[type=text]:not(:last-child), .input-item>input[type=date]:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.input-item>select:not(:first-child), .input-item>input[type=text]:not(:first-child), .input-item>input[type=date]:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+
+
+.input-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+    width: 22rem;
+    border-width: 0;
+    border-radius: 0.4rem;
+    box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0.75rem 1.25rem;
+}
