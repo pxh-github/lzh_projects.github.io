@@ -1,0 +1,181 @@
+{
+  "runId": "RUN-2e7f3043-5dcc-4973-97c7-c0cc07f2f6f8",
+  "experimentId": "EXP-b0dc4bdd-bc78-40ee-b8c9-18d93e1b58f1",
+  "environmentId": "a3c19e90e30a3f3f8d2f7a655f6d859507782b3ff569c4028bfb3f5791e1fc98",
+  "config": {
+    "mapId": "现有 POI 地图",
+    "poiCount": 2419,
+    "simulationDuration": 24,
+    "vehicleCount": 10,
+    "orderGenerationInterval": 60,
+    "randomSeed": 1412170151,
+    "algorithm": "BASELINE",
+    "events": {
+      "TRAFFIC_JAM": true,
+      "VEHICLE_FAULT": true,
+      "WEATHER": true,
+      "CARGO_DAMAGE": true,
+      "SHORTAGE": true
+    }
+  },
+  "modelId": "d527d0568d4b8b5afe08ec6dda35ef182ca355a2d845218124df4ed3f33bbb20",
+  "source": "BACKEND",
+  "status": "COMPLETED",
+  "progress": 100,
+  "startedAt": 1791463722062,
+  "metrics": {
+    "totalWaitTime": 240,
+    "completedTonnage": 10,
+    "vehicleUtilization": 67.09,
+    "totalEmptyDistance": 1127.58,
+    "totalCarbonEmission": 1469.27
+  },
+  "events": [
+    {
+      "eventId": "EVENT-1",
+      "eventType": "TRAFFIC_JAM",
+      "startTime": "2026-01-01T00:00:00",
+      "duration": 23,
+      "extraDelay": 9,
+      "affectedVehicleIds": [
+        5
+      ],
+      "affectedOrderIds": [
+        1
+      ]
+    },
+    {
+      "eventId": "EVENT-2",
+      "eventType": "TRAFFIC_JAM",
+      "startTime": "2026-01-01T03:00:00",
+      "duration": 17,
+      "extraDelay": 10,
+      "affectedVehicleIds": [
+        2
+      ],
+      "affectedOrderIds": [
+        21
+      ]
+    },
+    {
+      "eventId": "EVENT-3",
+      "eventType": "TRAFFIC_JAM",
+      "startTime": "2026-01-01T05:00:00",
+      "duration": 28,
+      "extraDelay": 7,
+      "affectedVehicleIds": [
+        10
+      ],
+      "affectedOrderIds": [
+        8
+      ]
+    },
+    {
+      "eventId": "EVENT-4",
+      "eventType": "TRAFFIC_JAM",
+      "startTime": "2026-01-01T19:00:00",
+      "duration": 15,
+      "extraDelay": 9,
+      "affectedVehicleIds": [
+        5
+      ],
+      "affectedOrderIds": [
+        14
+      ]
+    },
+    {
+      "eventId": "EVENT-5",
+      "eventType": "TRAFFIC_JAM",
+      "startTime": "2026-01-01T23:00:00",
+      "duration": 19,
+      "extraDelay": 6,
+      "affectedVehicleIds": [
+        4
+      ],
+      "affectedOrderIds": [
+        6
+      ]
+    },
+    {
+      "eventId": "EVENT-6",
+      "eventType": "WEATHER",
+      "startTime": "2026-01-01T13:00:00",
+      "duration": 20,
+      "extraDelay": 7,
+      "affectedVehicleIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "affectedOrderIds": [
+        2
+      ]
+    },
+    {
+      "eventId": "EVENT-7",
+      "eventType": "CARGO_DAMAGE",
+      "startTime": "2026-01-01T11:00:00",
+      "duration": 12,
+      "extraDelay": 14,
+      "affectedVehicleIds": [
+        6
+      ],
+      "affectedOrderIds": [
+        12
+      ]
+    },
+    {
+      "eventId": "EVENT-8",
+      "eventType": "SHORTAGE",
+      "startTime": "2026-01-01T08:00:00",
+      "duration": 20,
+      "extraDelay": 6,
+      "affectedVehicleIds": [
+        7
+      ],
+      "affectedOrderIds": [
+        9
+      ]
+    },
+    {
+      "eventId": "EVENT-9",
+      "eventType": "SHORTAGE",
+      "startTime": "2026-01-01T01:00:00",
+      "duration": 23,
+      "extraDelay": 6,
+      "affectedVehicleIds": [
+        2
+      ],
+      "affectedOrderIds": [
+        2
+      ]
+    },
+    {
+      "eventId": "EVENT-10",
+      "eventType": "SHORTAGE",
+      "startTime": "2026-01-01T12:00:00",
+      "duration": 30,
+      "extraDelay": 5,
+      "affectedVehicleIds": [
+        6
+      ],
+      "affectedOrderIds": [
+        13
+      ]
+    }
+  ],
+  "simulationTime": "2026-01-02T00:00",
+  "taskCount": 12,
+  "completedTaskCount": 2,
+  "pendingOrderCount": 22,
+  "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+  "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+  "finishedAt": 1791463722081
+}

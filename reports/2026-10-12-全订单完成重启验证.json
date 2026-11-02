@@ -1,0 +1,18 @@
+{
+  "oldUiCheck": {
+    "summary": "历史运行：24小时截止口径；重新开始实验将运行至全部订单完成。",
+    "rerunDisabled": true
+  },
+  "rejectedLegacyStatus": 409,
+  "noRunCreated": true,
+  "summary": "订单完成 12/12 · 总完成时长 97.7 h · 平均订单时长 42.6 h",
+  "errors": [],
+  "scene": {
+    "simTime": "2027-01-13T08:56:15",
+    "mode": "OPTIMIZED",
+    "running": false,
+    "sceneId": "205932ae-6217-4459-928a-73a75dd8d3ea",
+    "lastRoundTasks": 0,
+    "totalTasksGenerated": 42
+  }
+}

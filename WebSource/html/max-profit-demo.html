@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>最大利润算法演示</title>
+<link rel="stylesheet" href="../css/cycle.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+<style>
+    .selected { border: 2px solid #10b981 !important; background: #f0fdf4 !important; }
+    .profit-bar { height: 8px; border-radius: 4px; margin: 4px 0; }
+    .highlight { animation: glow 0.5s ease-in-out 3; }
+    @keyframes glow { 0%,100% { box-shadow: 0 0 4px #10b981; } 50% { box-shadow: 0 0 16px #10b981; } }
+</style>
+<script src="../js/amap-config.local.js"></script>
+    <script src="../js/amap-loader.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="control-panel">
+<h2>最大利润算法演示</h2>
+<div class="section"><div class="btn-group" style="grid-template-columns:1fr">
+    <button id="gen-btn" class="btn-primary">生成2个随机订单</button>
+</div></div>
+
+<div class="overview-card">
+    <div>车辆位置：<span id="veh-pos">-</span></div>
+    <div>车辆载重：<span id="veh-cap">-</span> 吨</div>
+</div>
+
+<h3>订单利润对比</h3>
+<div id="order-compare"></div>
+
+<h3>算法决策</h3>
+<div id="decision" style="font-size:13px;color:#94a3b8;padding:8px">点击按钮生成订单</div>
+</div>
+<script>
+let map, carMarker, carLoc;
+const CAR_SPEED = 80, WEAR_RATE = 30, FUEL_COST = 1.28; // 中型6T车
+
+window.onload = () => {
+    map = new AMap.Map("map", { zoom: 5, center: [104.06, 30.67] });
+    carLoc = [104 + Math.random() * 4, 30 + Math.random() * 2];
+    carMarker = new AMap.Marker({ position: carLoc, anchor: "center",
+        content: '<div class="vehicle-marker" style="background:#3b82f6">1</div>', map });
+    map.setCenter(carLoc);
+    document.getElementById("veh-pos").textContent = carLoc.map(v=>v.toFixed(3)).join(", ");
+    document.getElementById("veh-cap").textContent = "6";
+    document.getElementById("gen-btn").onclick = generateOrders;
+};
+
+function randLoc() {
+    return [carLoc[0] + (Math.random()-0.5)*6, carLoc[1] + (Math.random()-0.5)*4];
+}
+function dist(a,b) {
+    if (!a||!b||a.length<2||b.length<2) return 10;
+    const d = Math.sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2);
+    return isNaN(d) ? 10 : d * 111 * 1.25;
+}
+
+function calcProfit(o, fromLoc) {
+    const pickDist = dist(fromLoc, o.pickup);
+    const transDist = dist(o.pickup, o.delivery);
+    const pickTime = pickDist / CAR_SPEED;
+    const transTime = transDist / CAR_SPEED;
+    const cost1 = (pickTime+transTime)*WEAR_RATE + (pickDist+transDist)*FUEL_COST;
+    const cargoWait = pickTime; // simplified
+    const cost2 = o.weight * 3.0 * (Math.pow(1.05, cargoWait) - 1);
+    const cost3 = o.weight * 8;
+    const revenue = o.weight * transDist * 1.5;
+    return {
+        pickDist, transDist, pickTime, transTime, cost1, cost2, cost3,
+        revenue, totalCost: cost1+cost2+cost3, netProfit: revenue-cost1-cost2-cost3
+    };
+}
+
+async function generateOrders() {
+    const orders = [
+        { id:'A', pickup:randLoc(), delivery:randLoc(), weight:1+Math.random()*5, name:'订单A' },
+        { id:'B', pickup:randLoc(), delivery:randLoc(), weight:1+Math.random()*5, name:'订单B' }
+    ];
+
+    // Remove old order markers
+    document.querySelectorAll('.order-marker').forEach(m => m.remove());
+
+    // Show order markers on map
+    orders.forEach(o => {
+        new AMap.Marker({ position: o.pickup, map,
+            content: `<div style="background:#f59e0b;color:#fff;width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;font-size:10px;font-weight:bold">${o.id}</div>`
+        });
+        new AMap.Marker({ position: o.delivery, map,
+            content: `<div style="background:#ef4444;color:#fff;width:16px;height:16px;border-radius:50%;text-align:center;line-height:16px;font-size:8px">${o.id}</div>`
+        });
+    });
+
+    // Calculate profits
+    const results = orders.map(o => ({ order: o, weight: o.weight, ...calcProfit(o, carLoc) }));
+    const best = results.reduce((a,b) => a.netProfit > b.netProfit ? a : b);
+
+    // Render comparison
+    let html = '<table style="width:100%;font-size:12px;border-collapse:collapse">';
+    html += '<tr style="background:#f1f5f9"><th></th><th>'+orders[0].name+'</th><th>'+orders[1].name+'</th></tr>';
+    const rows = [
+        ['重量(T)', 'weight'], ['取货距离(km)', 'pickDist'], ['运输距离(km)', 'transDist'],
+        ['Cost1(运输)', 'cost1'], ['Cost2(损耗)', 'cost2'], ['Cost3(装卸)', 'cost3'],
+        ['Revenue', 'revenue'], ['净收益', 'netProfit']
+    ];
+    rows.forEach(([label, key]) => {
+        html += `<tr><td>${label}</td>`;
+        results.forEach(r => {
+            const val = r[key]; const cls = key==='netProfit' ? (val>0?'profit-positive':'profit-negative') : '';
+            html += `<td class="${cls}">${typeof val==='number' ? val.toFixed(1) : val}</td>`;
+        });
+        html += '</tr>';
+    });
+    html += '</table>';
+    document.getElementById("order-compare").innerHTML = html;
+
+    // Highlight decision
+    const other = results.find(r => r.order.id !== best.order.id);
+    document.getElementById("decision").innerHTML = `
+        <div class="step-card highlight">
+            <b>车辆选择：${best.order.name}</b>
+            <p>净收益 ${best.netProfit.toFixed(2)} vs ${other.netProfit.toFixed(2)}，
+            高出 ${(best.netProfit-other.netProfit).toFixed(2)}</p>
+            <p style="font-size:11px;color:#64748b">
+            路线：起点→${best.order.name}取货(${best.pickDist.toFixed(0)}km)→${best.order.name}送货(${best.transDist.toFixed(0)}km)</p>
+        </div>`;
+
+    // Animate car to best order
+    const path = [carLoc, best.order.pickup, best.order.delivery];
+    await animatePath(path, best.pickTime + best.transTime);
+    carLoc = best.order.delivery;
+    document.getElementById("veh-pos").textContent = carLoc.map(v=>v.toFixed(3)).join(", ");
+}
+
+function animatePath(path, hours) {
+    return new Promise(resolve => {
+        const dur = Math.max(hours * 500 / 10, 500);
+        const start = performance.now();
+        const segs = []; let total = 0;
+        for (let i=1; i<path.length; i++) { const d=Math.sqrt((path[i][0]-path[i-1][0])**2+(path[i][1]-path[i-1][1])**2); segs.push(d); total+=d; }
+        if (total===0) { resolve(); return; }
+        const anim = () => {
+            const t = Math.min((performance.now()-start)/dur, 1);
+            let target=t*total, acc=0, si=0;
+            for (let i=0; i<segs.length; i++) { if(acc+segs[i]>=target){ si=i; break; } acc+=segs[i]; si=i; }
+            const st=segs[si]>0?(target-acc)/segs[si]:0, ct=Math.max(0,Math.min(1,st));
+            const p1=path[si], p2=path[Math.min(si+1,path.length-1)];
+            carMarker.setPosition([p1[0]+(p2[0]-p1[0])*ct, p1[1]+(p2[1]-p1[1])*ct]);
+            if (t<1) requestAnimationFrame(anim); else { carMarker.setPosition(path[path.length-1]); resolve(); }
+        };
+        requestAnimationFrame(anim);
+    });
+}
+</script>
+<script src="../js/sidebar.js"></script>
+</body>
+</html>

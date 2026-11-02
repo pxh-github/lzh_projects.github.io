@@ -1,0 +1,124 @@
+{
+  "initial": {
+    "candidate": "RUN-391166d7-f48f-41f0-b964-295229189e72",
+    "note": "当前候选 RUN-391166d7 执行失败：执行进程退出或执行租约过期。尚无本次结果，未使用旧结果代替。"
+  },
+  "newExperiment": {
+    "candidate": "",
+    "baseline": "",
+    "note": "当前方案尚无运行结果；开始实验后这里会自动更新。"
+  },
+  "first": {
+    "identity": "EXP-452964e9-f413-4cdb-8e38-44b9620a1713 / RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+    "candidate": "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+    "note": "已显示当前运行结果，未找到同场景、种子、参数和模型的基准记录；可手动选择基准，或复制方案以相同参数执行基准算法。",
+    "chart": "总体等待时间 min · 同等需求下越低越好Baseline— minCandidate0 min每项指标独立刻度，条长只比较本项的两个数值。空载里程 km · 同等需求下越低越好Baseline— kmCandidate0 km每项指标独立刻度，条长只比较本项的两个数值。车辆利用率 % · 通常越高越好Baseline— %Candidate0 %每项指标独立刻度，条长只比较本项的两个数值。运输达成吨位 t · 通常越高越好Baseline— tCandidate0 t每项指标独立刻度，条长只比较本项的两个数值。总碳排放 kg CO₂ · 同等需求下越低越好Baseline— kg CO₂Candidate0 kg CO₂每项指标独立刻度，条长只比较本项的两个数值。",
+    "rows": "总体等待时间 / min—0条件未满足，不能归因于算法空载里程 / km—0条件未满足，不能归因于算法车辆利用率 / %—0条件未满足，不能归因于算法运输达成吨位 / t—0条件未满足，不能归因于算法总碳排放 / kg CO₂—0条件未满足，不能归因于算法"
+  },
+  "second": {
+    "identity": "EXP-452964e9-f413-4cdb-8e38-44b9620a1713 / RUN-f0a8fe12-bb53-4118-966e-8025c9a05cb3",
+    "candidate": "RUN-f0a8fe12-bb53-4118-966e-8025c9a05cb3",
+    "note": "已显示当前运行结果，未找到同场景、种子、参数和模型的基准记录；可手动选择基准，或复制方案以相同参数执行基准算法。",
+    "chart": "总体等待时间 min · 同等需求下越低越好Baseline— minCandidate360 min每项指标独立刻度，条长只比较本项的两个数值。空载里程 km · 同等需求下越低越好Baseline— kmCandidate1,676.6 km每项指标独立刻度，条长只比较本项的两个数值。车辆利用率 % · 通常越高越好Baseline— %Candidate75.5 %每项指标独立刻度，条长只比较本项的两个数值。运输达成吨位 t · 通常越高越好Baseline— tCandidate6 t每项指标独立刻度，条长只比较本项的两个数值。总碳排放 kg CO₂ · 同等需求下越低越好Baseline— kg CO₂Candidate1,650.3 kg CO₂每项指标独立刻度，条长只比较本项的两个数值。",
+    "rows": "总体等待时间 / min—360条件未满足，不能归因于算法空载里程 / km—1,676.6条件未满足，不能归因于算法车辆利用率 / %—75.5条件未满足，不能归因于算法运输达成吨位 / t—6条件未满足，不能归因于算法总碳排放 / kg CO₂—1,650.3条件未满足，不能归因于算法"
+  },
+  "history": {
+    "candidate": "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+    "chart": "总体等待时间 min · 同等需求下越低越好Baseline— minCandidate0 min每项指标独立刻度，条长只比较本项的两个数值。空载里程 km · 同等需求下越低越好Baseline— kmCandidate0 km每项指标独立刻度，条长只比较本项的两个数值。车辆利用率 % · 通常越高越好Baseline— %Candidate0 %每项指标独立刻度，条长只比较本项的两个数值。运输达成吨位 t · 通常越高越好Baseline— tCandidate0 t每项指标独立刻度，条长只比较本项的两个数值。总碳排放 kg CO₂ · 同等需求下越低越好Baseline— kg CO₂Candidate0 kg CO₂每项指标独立刻度，条长只比较本项的两个数值。"
+  },
+  "pinned": {
+    "candidate": "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+    "baseline": "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+    "mode": "手动选择历史记录"
+  },
+  "following": {
+    "candidate": "RUN-f0a8fe12-bb53-4118-966e-8025c9a05cb3",
+    "baseline": "",
+    "mode": "跟随当前运行"
+  },
+  "backendRuns": [
+    {
+      "runId": "RUN-f0a8fe12-bb53-4118-966e-8025c9a05cb3",
+      "experimentId": "EXP-452964e9-f413-4cdb-8e38-44b9620a1713",
+      "environmentId": "a3c19e90e30a3f3f8d2f7a655f6d859507782b3ff569c4028bfb3f5791e1fc98",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 2419,
+        "simulationDuration": 24,
+        "vehicleCount": 10,
+        "orderGenerationInterval": 120,
+        "randomSeed": 333,
+        "algorithm": "BASELINE",
+        "events": {
+          "WEATHER": false,
+          "CARGO_DAMAGE": false,
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false
+        }
+      },
+      "modelId": "d527d0568d4b8b5afe08ec6dda35ef182ca355a2d845218124df4ed3f33bbb20",
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1791809811650,
+      "metrics": {
+        "vehicleUtilization": 75.5,
+        "totalEmptyDistance": 1676.63,
+        "totalCarbonEmission": 1650.31,
+        "totalWaitTime": 360,
+        "completedTonnage": 6
+      },
+      "events": [],
+      "simulationTime": "2026-01-02T00:00",
+      "taskCount": 14,
+      "completedTaskCount": 4,
+      "pendingOrderCount": 12,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "finishedAt": 1791809811676
+    },
+    {
+      "runId": "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+      "experimentId": "EXP-452964e9-f413-4cdb-8e38-44b9620a1713",
+      "environmentId": "a3c19e90e30a3f3f8d2f7a655f6d859507782b3ff569c4028bfb3f5791e1fc98",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 2419,
+        "simulationDuration": 24,
+        "vehicleCount": 10,
+        "orderGenerationInterval": 120,
+        "randomSeed": 222,
+        "algorithm": "BASELINE",
+        "events": {
+          "WEATHER": false,
+          "CARGO_DAMAGE": false,
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false
+        }
+      },
+      "modelId": "d527d0568d4b8b5afe08ec6dda35ef182ca355a2d845218124df4ed3f33bbb20",
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1791809809856,
+      "metrics": {
+        "vehicleUtilization": 0,
+        "totalEmptyDistance": 0,
+        "totalCarbonEmission": 0,
+        "totalWaitTime": 0,
+        "completedTonnage": 0
+      },
+      "events": [],
+      "simulationTime": "2026-01-02T00:00",
+      "taskCount": 10,
+      "completedTaskCount": 0,
+      "pendingOrderCount": 12,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "finishedAt": 1791809809893
+    }
+  ],
+  "errors": []
+}

@@ -13,11 +13,10 @@ let pathPoints = [];
 let animIndex = 0;
 let animTimer = null;
 
-const AMapKey = "1d830d8718ed7ad1452d6bbdfe3f447a"; // ← 记得换成 Web 服务 Key
 
 
 document.getElementById("btn-load-poi").onclick = () => {
-    axios.get("http://localhost:9090/user").then(res => {
+    axios.get("http://localhost:9091/user").then(res => {
         if(pxh===1){
             poiData.push(res.data[0]);
             poiData.push(res.data[5]);
@@ -64,11 +63,12 @@ document.getElementById("btn-plan").onclick = async () => {
     const origin_id=poi1.id;
     const destination_id=poi2.id
     // 驾车路线，必须一行
-    const url =`https://restapi.amap.com/v5/direction/driving?origin=${origin}&destination=${destination}&origin_id=${origin_id}&destination=${destination_id}&show_fields=polyline&extensions=all&key=${AMapKey}`;
+    const url = `/amap/driving?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
 
     console.log("请求：", url);
 
-    const res = await axios.get(url);
+    const response = await axios.get(url);
+    const res = { data: JSON.parse(response.data.raw) };
     console.log("返回：", res.data);
     console.log(JSON.stringify(res.data.route.paths[0], null, 2));
 

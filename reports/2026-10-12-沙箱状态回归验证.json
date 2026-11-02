@@ -1,0 +1,6 @@
+{
+  "scope": "Controlled browser fixture, not backend production records",
+  "running": "总体等待时间 / min\t360\t—\t条件未满足，不能归因于算法\n空载里程 / km\t1,676.6\t—\t条件未满足，不能归因于算法\n车辆利用率 / %\t75.5\t—\t条件未满足，不能归因于算法\n运输达成吨位 / t\t6\t—\t条件未满足，不能归因于算法\n总碳排放 / kg CO₂\t1,650.3\t—\t条件未满足，不能归因于算法",
+  "failed": "当前候选 RUN-ui-lifec 执行失败：验收模拟失败。尚无本次结果，未使用旧结果代替。",
+  "completed": "总体等待时间 / min\t360\t483\t退化 34.2%\n空载里程 / km\t1,676.6\t1,676.6\t持平 0%\n车辆利用率 / %\t75.5\t75.5\t持平 0%\n运输达成吨位 / t\t6\t6\t持平 0%\n总碳排放 / kg CO₂\t1,650.3\t1,650.3\t持平 0%"
+}

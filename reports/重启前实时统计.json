@@ -1,0 +1,98 @@
+{
+  "history": [
+    {
+      "sceneId": "aef7bc56-0ed9-4769-b9a6-945fae74f774",
+      "simulationTime": "2026-10-09T21:42:13",
+      "stats": {
+        "totalWaitTime": 1427718.0,
+        "completedTonnage": 427.2,
+        "totalCarbonEmission": 60207.835872,
+        "vehicleCount": 10,
+        "idleVehicleCount": 10,
+        "orderCount": 20,
+        "doneOrderCount": 20,
+        "taskCount": 52,
+        "totalRevenue": 845679.05,
+        "totalCost": 229895.19,
+        "totalProfit": 615783.79,
+        "totalTaskHours": 1256.65,
+        "profitPerHour": 490.02,
+        "totalPendingWeight": 0.0,
+        "totalEmptyMileageKm": 40379.65,
+        "totalLoadedMileageKm": 77125.84,
+        "emptyMileageRate": 34.36,
+        "avgLoadUtilization": 85.3461538462,
+        "totalCargoWaitHours": 126690.46
+      },
+      "metrics": {
+        "totalWaitTime": 1427718.0,
+        "totalEmptyDistance": 40379.65,
+        "vehicleUtilization": 65.64,
+        "completedTonnage": 427.2,
+        "totalCarbonEmission": 60207.835872,
+        "runningVehicleCount": 0,
+        "totalVehicleCount": 10,
+        "pendingOrderCount": 0,
+        "orderCompletionRate": 100.0,
+        "simulationTime": "2026-10-09T21:42:13"
+      },
+      "cycle": {
+        "lastRoundTasks": 0,
+        "running": false,
+        "simTime": "2026-10-09T21:42:13",
+        "mode": "OPTIMIZED",
+        "totalTasksGenerated": 0
+      },
+      "capturedAt": "2026-10-09T21:42:13.7287693",
+      "sampleId": 1
+    }
+  ],
+  "source": "DATABASE",
+  "samplingIntervalMs": 3000,
+  "current": {
+    "sceneId": "aef7bc56-0ed9-4769-b9a6-945fae74f774",
+    "simulationTime": "2026-10-09T21:42:13",
+    "stats": {
+      "totalWaitTime": 1427718.0,
+      "completedTonnage": 427.2,
+      "totalCarbonEmission": 60207.835872,
+      "vehicleCount": 10,
+      "idleVehicleCount": 10,
+      "orderCount": 20,
+      "doneOrderCount": 20,
+      "taskCount": 52,
+      "totalRevenue": 845679.05,
+      "totalCost": 229895.19,
+      "totalProfit": 615783.79,
+      "totalTaskHours": 1256.65,
+      "profitPerHour": 490.02,
+      "totalPendingWeight": 0.0,
+      "totalEmptyMileageKm": 40379.65,
+      "totalLoadedMileageKm": 77125.84,
+      "emptyMileageRate": 34.36,
+      "avgLoadUtilization": 85.3461538462,
+      "totalCargoWaitHours": 126690.46
+    },
+    "metrics": {
+      "totalWaitTime": 1427718.0,
+      "totalEmptyDistance": 40379.65,
+      "vehicleUtilization": 65.64,
+      "completedTonnage": 427.2,
+      "totalCarbonEmission": 60207.835872,
+      "runningVehicleCount": 0,
+      "totalVehicleCount": 10,
+      "pendingOrderCount": 0,
+      "orderCompletionRate": 100.0,
+      "simulationTime": "2026-10-09T21:42:13"
+    },
+    "cycle": {
+      "lastRoundTasks": 0,
+      "running": false,
+      "simTime": "2026-10-09T21:42:13",
+      "mode": "OPTIMIZED",
+      "totalTasksGenerated": 0
+    },
+    "capturedAt": "2026-10-09T21:42:13.7287693",
+    "sampleId": 1
+  }
+}

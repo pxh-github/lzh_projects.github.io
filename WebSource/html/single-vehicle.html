@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>单车NF算法演示</title>
+    <link rel="stylesheet" href="../css/cycle.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .cost-detail { font-size: 12px; line-height: 1.8; }
+        .cost-detail table { width: 100%; border-collapse: collapse; margin: 6px 0; }
+        .cost-detail th, .cost-detail td { border: 1px solid #e5e7eb; padding: 3px 6px; text-align: right; }
+        .cost-detail th { background: #f1f5f9; text-align: center; }
+        .profit-positive { color: #10b981; font-weight: bold; }
+        .profit-negative { color: #ef4444; font-weight: bold; }
+        .step-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+    </style>
+    <script src="../js/amap-config.local.js"></script>
+    <script src="../js/amap-loader.js"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="control-panel">
+    <h2>单车 NF 算法演示</h2>
+
+    <div class="section">
+        <div class="btn-group">
+            <button id="init-demo-btn" class="btn-primary">初始化演示</button>
+            <button id="step-btn" disabled>逐步装车</button>
+        </div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px">初始化 1辆车 + 8个附近订单，然后逐步演示NF装车</div>
+    </div>
+
+    <div class="overview-card">
+        <div>车辆：<span id="veh-info">-</span></div>
+        <div>剩余载重：<span id="remain-cap">-</span> 吨</div>
+        <div>当前位置：<span id="current-loc">-</span></div>
+        <div>累计净收益：<span id="total-profit">0</span></div>
+    </div>
+
+    <h3>可供选择的订单</h3>
+    <div id="order-list"></div>
+
+    <h3>装车步骤</h3>
+    <div id="step-list">
+        <div style="color:#94a3b8;text-align:center;padding:12px">点击「初始化演示」开始</div>
+    </div>
+</div>
+
+<script src="../js/single-vehicle.js"></script>
+<script src="../js/sidebar.js"></script>
+</body>
+</html>

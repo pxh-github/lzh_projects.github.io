@@ -1,0 +1,3365 @@
+{
+  "experiments": [
+    {
+      "experimentId": "EXP-258afd96-f3c8-48ac-9276-9c4ed6080cd4",
+      "name": "Changed preferences",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "WEIGHTED",
+        "events": {
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false,
+          "WEATHER": true,
+          "CARGO_DAMAGE": false
+        },
+        "orderCount": 12,
+        "objectiveWeights": {
+          "waiting": 0.25,
+          "emptyDistance": 0.25,
+          "utilization": 0.2,
+          "tonnage": 0.15,
+          "carbon": 0.15
+        }
+      },
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "version": 4
+    },
+    {
+      "experimentId": "EXP-8c7e0f38-b78c-412d-94b4-ec21445e88b0",
+      "name": "Weighted copy",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "WEIGHTED",
+        "events": {
+          "WEATHER": true
+        },
+        "orderCount": 12,
+        "objectiveWeights": {
+          "waiting": 25.0,
+          "emptyDistance": 25.0,
+          "utilization": 20.0,
+          "tonnage": 15.0,
+          "carbon": 15.0
+        }
+      },
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "version": 1
+    },
+    {
+      "experimentId": "EXP-9d7d2e55-7c32-4c7e-bb18-1b102cda138b",
+      "name": "Integration",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 50,
+        "orderGenerationInterval": 10,
+        "randomSeed": 20260922,
+        "algorithm": "BASELINE",
+        "events": {},
+        "orderCount": 100,
+        "objectiveWeights": null
+      },
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "version": 1
+    },
+    {
+      "experimentId": "EXP-f7f6ca8a-2a1e-459f-a268-d225a74d1ba8",
+      "name": "Changed preferences 同条件基准",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "BASELINE",
+        "events": {
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false,
+          "WEATHER": true,
+          "CARGO_DAMAGE": false
+        },
+        "orderCount": 12,
+        "objectiveWeights": null
+      },
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "version": 1
+    }
+  ],
+  "runs": [
+    {
+      "runId": "RUN-2ebe1e02-53a5-449a-a82c-fe29820e1e31",
+      "experimentId": "EXP-f7f6ca8a-2a1e-459f-a268-d225a74d1ba8",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "BASELINE",
+        "events": {
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false,
+          "WEATHER": true,
+          "CARGO_DAMAGE": false
+        },
+        "orderCount": 12,
+        "objectiveWeights": null
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 12,
+      "completedOrderCount": 12,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793622014645,
+      "metrics": {
+        "vehicleUtilization": 56.59,
+        "totalWaitTime": 32.99,
+        "totalEmptyDistance": 1.91,
+        "totalCarbonEmission": 2.06,
+        "cargoWaitingTonMinutes": 1387.5,
+        "capacityDistanceUtilization": 37.71,
+        "completedTonnage": 155.9,
+        "totalCompletionTimeH": 0.35,
+        "averageOrderCompletionTimeH": 0.17
+      },
+      "events": [
+        {
+          "eventId": "EVENT-1",
+          "eventType": "WEATHER",
+          "startTime": "2026-01-01T00:00:00",
+          "duration": 10,
+          "extraDelay": 11,
+          "affectedVehicleIds": [
+            1,
+            2,
+            3
+          ],
+          "affectedOrderIds": [
+            8
+          ]
+        }
+      ],
+      "simulationTime": "2026-01-01T00:21",
+      "taskCount": 32,
+      "completedTaskCount": 32,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {},
+      "finishedAt": 1793622014667
+    },
+    {
+      "runId": "RUN-4ce7aa7a-f5d0-4eca-bb45-fc5794b00bad",
+      "experimentId": "EXP-258afd96-f3c8-48ac-9276-9c4ed6080cd4",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "WEIGHTED",
+        "events": {
+          "SHORTAGE": false,
+          "TRAFFIC_JAM": false,
+          "VEHICLE_FAULT": false,
+          "WEATHER": true,
+          "CARGO_DAMAGE": false
+        },
+        "orderCount": 12,
+        "objectiveWeights": {
+          "waiting": 40.0,
+          "emptyDistance": 0.25,
+          "utilization": 0.2,
+          "tonnage": 0.15,
+          "carbon": 0.15
+        }
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 12,
+      "completedOrderCount": 12,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793622007495,
+      "metrics": {
+        "vehicleUtilization": 63.7,
+        "totalWaitTime": 32.99,
+        "totalEmptyDistance": 1.55,
+        "totalCarbonEmission": 2.08,
+        "cargoWaitingTonMinutes": 1166.16,
+        "capacityDistanceUtilization": 36.26,
+        "completedTonnage": 155.9,
+        "totalCompletionTimeH": 0.35,
+        "averageOrderCompletionTimeH": 0.21
+      },
+      "events": [
+        {
+          "eventId": "EVENT-1",
+          "eventType": "WEATHER",
+          "startTime": "2026-01-01T00:00:00",
+          "duration": 10,
+          "extraDelay": 11,
+          "affectedVehicleIds": [
+            1,
+            2,
+            3
+          ],
+          "affectedOrderIds": [
+            8
+          ]
+        }
+      ],
+      "simulationTime": "2026-01-01T00:21",
+      "taskCount": 32,
+      "completedTaskCount": 32,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {
+        "weights": {
+          "waiting": 40.0,
+          "emptyDistance": 0.25,
+          "utilization": 0.2,
+          "tonnage": 0.15,
+          "carbon": 0.15
+        },
+        "samplesTruncated": true,
+        "decisionCount": 32,
+        "normalizedWeights": [
+          0.9815950920245399,
+          0.006134969325153374,
+          0.0049079754601227,
+          0.0036809815950920245,
+          0.0036809815950920245
+        ],
+        "method": "LINEAR_WEIGHTED_SUM",
+        "candidateCount": 377,
+        "normalization": "MIN_MAX_PER_DECISION",
+        "decisionSamples": [
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 131.997,
+              "emptyDistance": 0.14,
+              "utilization": 0.29999999999999993,
+              "tonnage": 1.5,
+              "carbon": 0.048240000000000005
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ],
+            "maxima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 115.488,
+              "emptyDistance": 0.02,
+              "utilization": 0.75,
+              "tonnage": 6.0,
+              "carbon": 0.034304
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ],
+            "maxima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 49.491,
+              "emptyDistance": 0.01,
+              "utilization": 0.25714285714285723,
+              "tonnage": 4.5,
+              "carbon": 0.052528
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ],
+            "maxima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              2
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 142.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.000507721599323038,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.13793103448275865
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.000507721599323038
+              ]
+            },
+            "minima": [
+              142.4,
+              0.0,
+              0.0,
+              -1.5,
+              0.021707999999999998
+            ],
+            "maxima": [
+              286.0,
+              0.22,
+              0.9047619047619048,
+              -1.2,
+              0.091656
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              5
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 136.4,
+              "emptyDistance": 0.04,
+              "utilization": 0.5555555555555556,
+              "tonnage": 6.0,
+              "carbon": 0.038592
+            },
+            "evaluation": {
+              "score": 0.002383071769168548,
+              "normalizedLosses": [
+                0.0,
+                0.18181818181818182,
+                0.2582781456953643,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0011154489682097045,
+                0.0012676228009588432,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              136.4,
+              0.0,
+              0.2777777777777777,
+              -6.0,
+              0.038592
+            ],
+            "maxima": [
+              281.2,
+              0.22,
+              0.9230769230769231,
+              -1.2,
+              0.162944
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 121.4,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.0015212416100928903,
+              "normalizedLosses": [
+                0.0,
+                0.2272727272727273,
+                0.0,
+                0.0,
+                0.034482758620689696
+              ],
+              "contributions": [
+                0.0,
+                0.0013943112102621307,
+                0.0,
+                0.0,
+                0.00012693039983075963
+              ]
+            },
+            "minima": [
+              121.4,
+              0.0,
+              0.5,
+              -15.0,
+              0.067536
+            ],
+            "maxima": [
+              135.20000000000002,
+              0.22,
+              0.9692307692307692,
+              -1.2,
+              0.285152
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 119.9,
+              "emptyDistance": 0.02,
+              "utilization": 0.8666666666666668,
+              "tonnage": 1.5,
+              "carbon": 0.03618
+            },
+            "evaluation": {
+              "score": 0.0023753342771747677,
+              "normalizedLosses": [
+                0.0,
+                0.15384615384615385,
+                0.0,
+                0.0,
+                0.3888888888888888
+              ],
+              "contributions": [
+                0.0,
+                0.0009438414346389807,
+                0.0,
+                0.0,
+                0.001431492842535787
+              ]
+            },
+            "minima": [
+              119.9,
+              0.0,
+              0.1333333333333332,
+              -1.5,
+              0.019296
+            ],
+            "maxima": [
+              240.10000000000002,
+              0.13,
+              0.75,
+              -1.2,
+              0.062712
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              4
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 113.9,
+              "emptyDistance": 0.02,
+              "utilization": 0.6666666666666666,
+              "tonnage": 6.0,
+              "carbon": 0.025728
+            },
+            "evaluation": {
+              "score": 0.001097215667767815,
+              "normalizedLosses": [
+                0.0,
+                0.15384615384615385,
+                0.0,
+                0.0,
+                0.041666666666666664
+              ],
+              "contributions": [
+                0.0,
+                0.0009438414346389807,
+                0.0,
+                0.0,
+                0.00015337423312883434
+              ]
+            },
+            "minima": [
+              113.9,
+              0.0,
+              0.33333333333333337,
+              -6.0,
+              0.02144
+            ],
+            "maxima": [
+              118.7,
+              0.13,
+              0.8625,
+              -1.2,
+              0.12435200000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 98.9,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.003583856320891298,
+              "normalizedLosses": [
+                0.0,
+                0.36363636363636365,
+                0.1393016344725111,
+                0.0,
+                0.18181818181818182
+              ],
+              "contributions": [
+                0.0,
+                0.002230897936419409,
+                0.0006836890035460668,
+                0.0,
+                0.0006692693809258227
+              ]
+            },
+            "minima": [
+              98.9,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              112.7,
+              0.12,
+              0.9413333333333334,
+              -1.2,
+              0.21011200000000002
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              3
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 97.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.0008885127988153164,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.2413793103448276
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0008885127988153164
+              ]
+            },
+            "minima": [
+              97.4,
+              0.0,
+              0.0,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              196.0,
+              0.19,
+              0.8947368421052632,
+              -1.2,
+              0.08442
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 91.4,
+              "emptyDistance": 0.02,
+              "utilization": 0.7142857142857143,
+              "tonnage": 6.0,
+              "carbon": 0.030016000000000004
+            },
+            "evaluation": {
+              "score": 0.0007727166445837462,
+              "normalizedLosses": [
+                0.0,
+                0.10526315789473684,
+                0.0,
+                0.0,
+                0.03448275862068966
+              ],
+              "contributions": [
+                0.0,
+                0.0006457862447529867,
+                0.0,
+                0.0,
+                0.0001269303998307595
+              ]
+            },
+            "minima": [
+              91.4,
+              0.0,
+              0.2857142857142857,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              96.2,
+              0.19,
+              0.9090909090909091,
+              -1.2,
+              0.15008
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 76.4,
+              "emptyDistance": 0.12,
+              "utilization": 0.5714285714285714,
+              "tonnage": 15.0,
+              "carbon": 0.21011200000000002
+            },
+            "evaluation": {
+              "score": 0.0098159509202454,
+              "normalizedLosses": [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "contributions": [
+                0.0,
+                0.006134969325153374,
+                0.0,
+                0.0,
+                0.0036809815950920245
+              ]
+            },
+            "minima": [
+              76.4,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              90.2,
+              0.12,
+              0.9413333333333334,
+              -1.2,
+              0.21011200000000002
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 74.9,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.001120298746332355,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.30434782608695643
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.001120298746332355
+              ]
+            },
+            "minima": [
+              74.9,
+              0.0,
+              0.0,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              150.10000000000002,
+              0.16,
+              0.7142857142857143,
+              -1.2,
+              0.06994800000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              4
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 68.9,
+              "emptyDistance": 0.04,
+              "utilization": 0.5,
+              "tonnage": 6.0,
+              "carbon": 0.034304
+            },
+            "evaluation": {
+              "score": 0.002689305344304858,
+              "normalizedLosses": [
+                0.0,
+                0.2727272727272727,
+                0.13885505481120577,
+                0.0,
+                0.09090909090909086
+              ],
+              "contributions": [
+                0.0,
+                0.0016731734523145565,
+                0.0006814972015273904,
+                0.0,
+                0.0003346346904629111
+              ]
+            },
+            "minima": [
+              68.9,
+              0.01,
+              0.4285714285714286,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              74.4,
+              0.12,
+              0.9429824561403509,
+              -0.5,
+              0.12006400000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 53.900000000000006,
+              "emptyDistance": 0.16,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.24012800000000004
+            },
+            "evaluation": {
+              "score": 0.0098159509202454,
+              "normalizedLosses": [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "contributions": [
+                0.0,
+                0.006134969325153374,
+                0.0,
+                0.0,
+                0.0036809815950920245
+              ]
+            },
+            "minima": [
+              53.900000000000006,
+              0.01,
+              0.5,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              68.4,
+              0.16,
+              0.981159420289855,
+              -0.5,
+              0.24012800000000004
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              3
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 52.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.0008885127988153164,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.2413793103448276
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0008885127988153164
+              ]
+            },
+            "minima": [
+              52.4,
+              0.0,
+              0.0,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              53.4,
+              0.19,
+              0.8947368421052632,
+              -0.5,
+              0.08442
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 46.4,
+              "emptyDistance": 0.19,
+              "utilization": 0.4571428571428572,
+              "tonnage": 6.0,
+              "carbon": 0.15008
+            },
+            "evaluation": {
+              "score": 0.0098159509202454,
+              "normalizedLosses": [
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "contributions": [
+                0.0,
+                0.006134969325153374,
+                0.0,
+                0.0,
+                0.0036809815950920245
+              ]
+            },
+            "minima": [
+              46.4,
+              0.0,
+              0.5428571428571428,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              51.9,
+              0.19,
+              0.9583333333333334,
+              -0.5,
+              0.15008
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 31.4,
+              "emptyDistance": 0.13,
+              "utilization": 0.13333333333333333,
+              "tonnage": 15.0,
+              "carbon": 0.11256000000000001
+            },
+            "evaluation": {
+              "score": 0.0061821613968853235,
+              "normalizedLosses": [
+                0.0,
+                0.8,
+                0.0,
+                0.0,
+                0.3461538461538461
+              ],
+              "contributions": [
+                0.0,
+                0.0049079754601227,
+                0.0,
+                0.0,
+                0.0012741859367626236
+              ]
+            },
+            "minima": [
+              31.4,
+              0.01,
+              0.8666666666666667,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              45.9,
+              0.16,
+              0.981159420289855,
+              -0.5,
+              0.24012800000000004
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              11
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 29.9,
+              "emptyDistance": 0.04,
+              "utilization": 0.6666666666666666,
+              "tonnage": 1.5,
+              "carbon": 0.028944000000000004
+            },
+            "evaluation": {
+              "score": 0.0031807110153928564,
+              "normalizedLosses": [
+                0.0,
+                0.25,
+                0.13991769547325095,
+                0.0,
+                0.2608695652173913
+              ],
+              "contributions": [
+                0.0,
+                0.0015337423312883436,
+                0.0006867126158196366,
+                0.0,
+                0.000960256068284876
+              ]
+            },
+            "minima": [
+              29.9,
+              0.0,
+              0.2727272727272728,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              30.9,
+              0.16,
+              0.7058823529411764,
+              -0.5,
+              0.06994800000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 23.9,
+              "emptyDistance": 0.13,
+              "utilization": 0.13333333333333333,
+              "tonnage": 6.0,
+              "carbon": 0.06432
+            },
+            "evaluation": {
+              "score": 0.009255427705946447,
+              "normalizedLosses": [
+                0.0,
+                0.8,
+                0.6261780104712041,
+                0.0,
+                0.34615384615384615
+              ],
+              "contributions": [
+                0.0,
+                0.0049079754601227,
+                0.0030732663090611246,
+                0.0,
+                0.0012741859367626238
+              ]
+            },
+            "minima": [
+              23.9,
+              0.01,
+              0.7222222222222223,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              29.4,
+              0.16,
+              0.9528985507246377,
+              -0.5,
+              0.137216
+            ]
+          }
+        ],
+        "objectiveKeys": [
+          "waiting",
+          "emptyDistance",
+          "utilization",
+          "tonnage",
+          "carbon"
+        ]
+      },
+      "finishedAt": 1793622007554
+    },
+    {
+      "runId": "RUN-a2a165aa-1974-465a-9a25-d45bd8371b27",
+      "experimentId": "EXP-9d7d2e55-7c32-4c7e-bb18-1b102cda138b",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 24,
+        "vehicleCount": 50,
+        "orderGenerationInterval": 10,
+        "randomSeed": 20260922,
+        "algorithm": "BASELINE",
+        "events": {},
+        "orderCount": null,
+        "objectiveWeights": null
+      },
+      "modelId": "4c1804857cae667f15aae540ebf8a4b5a96742860cf86ef7a786523201fa9577",
+      "orderCount": 100,
+      "completedOrderCount": 100,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793621991748,
+      "metrics": {
+        "vehicleUtilization": 52.29,
+        "totalWaitTime": 42439.2,
+        "totalEmptyDistance": 15.44,
+        "totalCarbonEmission": 18.92,
+        "cargoWaitingTonMinutes": 0.0,
+        "capacityDistanceUtilization": 27.72,
+        "completedTonnage": 1352.7,
+        "totalCompletionTimeH": 16.52,
+        "averageOrderCompletionTimeH": 0.02
+      },
+      "events": [],
+      "simulationTime": "2026-01-01T16:31",
+      "taskCount": 205,
+      "completedTaskCount": 205,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {},
+      "finishedAt": 1793621991852
+    },
+    {
+      "runId": "RUN-d868c811-836d-4fbe-8bbe-827f3bca68a6",
+      "experimentId": "EXP-9d7d2e55-7c32-4c7e-bb18-1b102cda138b",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 50,
+        "orderGenerationInterval": 10,
+        "randomSeed": 20260922,
+        "algorithm": "BASELINE",
+        "events": {},
+        "orderCount": 100,
+        "objectiveWeights": null
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 100,
+      "completedOrderCount": 100,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793621991748,
+      "metrics": {
+        "vehicleUtilization": 52.29,
+        "totalWaitTime": 42439.2,
+        "totalEmptyDistance": 15.44,
+        "totalCarbonEmission": 18.92,
+        "cargoWaitingTonMinutes": 0.0,
+        "capacityDistanceUtilization": 27.72,
+        "completedTonnage": 1352.7,
+        "totalCompletionTimeH": 16.52,
+        "averageOrderCompletionTimeH": 0.02
+      },
+      "events": [],
+      "simulationTime": "2026-01-01T16:31",
+      "taskCount": 205,
+      "completedTaskCount": 205,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {},
+      "finishedAt": 1793621991852
+    },
+    {
+      "runId": "RUN-bb3f8ea9-b55f-4c43-99c0-243cf75dbc63",
+      "experimentId": "EXP-9d7d2e55-7c32-4c7e-bb18-1b102cda138b",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 50,
+        "orderGenerationInterval": 10,
+        "randomSeed": 20260922,
+        "algorithm": "BASELINE",
+        "events": {},
+        "orderCount": 100,
+        "objectiveWeights": null
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 100,
+      "completedOrderCount": 100,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793621991908,
+      "metrics": {
+        "vehicleUtilization": 52.29,
+        "totalWaitTime": 42439.2,
+        "totalEmptyDistance": 15.44,
+        "totalCarbonEmission": 18.92,
+        "cargoWaitingTonMinutes": 0.0,
+        "capacityDistanceUtilization": 27.72,
+        "completedTonnage": 1352.7,
+        "totalCompletionTimeH": 16.52,
+        "averageOrderCompletionTimeH": 0.02
+      },
+      "events": [],
+      "simulationTime": "2026-01-01T16:31",
+      "rerunOf": "RUN-d868c811-836d-4fbe-8bbe-827f3bca68a6",
+      "taskCount": 205,
+      "completedTaskCount": 205,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {},
+      "finishedAt": 1793621992004
+    },
+    {
+      "runId": "RUN-b1f193c9-61ed-4e22-a30c-bf415bf91cab",
+      "experimentId": "EXP-258afd96-f3c8-48ac-9276-9c4ed6080cd4",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "WEIGHTED",
+        "events": {
+          "WEATHER": true
+        },
+        "orderCount": 12,
+        "objectiveWeights": {
+          "waiting": 25.0,
+          "emptyDistance": 25.0,
+          "utilization": 20.0,
+          "tonnage": 15.0,
+          "carbon": 15.0
+        }
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 12,
+      "completedOrderCount": 12,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793621991418,
+      "metrics": {
+        "vehicleUtilization": 65.16,
+        "totalWaitTime": 32.99,
+        "totalEmptyDistance": 1.39,
+        "totalCarbonEmission": 1.85,
+        "cargoWaitingTonMinutes": 1201.08,
+        "capacityDistanceUtilization": 42.34,
+        "completedTonnage": 155.9,
+        "totalCompletionTimeH": 0.35,
+        "averageOrderCompletionTimeH": 0.19
+      },
+      "events": [
+        {
+          "eventId": "EVENT-1",
+          "eventType": "WEATHER",
+          "startTime": "2026-01-01T00:00:00",
+          "duration": 10,
+          "extraDelay": 11,
+          "affectedVehicleIds": [
+            1,
+            2,
+            3
+          ],
+          "affectedOrderIds": [
+            8
+          ]
+        }
+      ],
+      "simulationTime": "2026-01-01T00:21",
+      "rerunOf": "RUN-370558fd-5d0d-4dbb-b3c6-d2408c19a337",
+      "taskCount": 30,
+      "completedTaskCount": 30,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {
+        "weights": {
+          "waiting": 25.0,
+          "emptyDistance": 25.0,
+          "utilization": 20.0,
+          "tonnage": 15.0,
+          "carbon": 15.0
+        },
+        "samplesTruncated": true,
+        "decisionCount": 29,
+        "normalizedWeights": [
+          0.25,
+          0.25,
+          0.2,
+          0.15,
+          0.15
+        ],
+        "method": "LINEAR_WEIGHTED_SUM",
+        "candidateCount": 309,
+        "normalization": "MIN_MAX_PER_DECISION",
+        "decisionSamples": [
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 131.997,
+              "emptyDistance": 0.14,
+              "utilization": 0.29999999999999993,
+              "tonnage": 1.5,
+              "carbon": 0.048240000000000005
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ],
+            "maxima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 115.488,
+              "emptyDistance": 0.02,
+              "utilization": 0.75,
+              "tonnage": 6.0,
+              "carbon": 0.034304
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ],
+            "maxima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 49.491,
+              "emptyDistance": 0.01,
+              "utilization": 0.25714285714285723,
+              "tonnage": 4.5,
+              "carbon": 0.052528
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ],
+            "maxima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              2
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 142.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.020689655172413796,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.13793103448275865
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.020689655172413796
+              ]
+            },
+            "minima": [
+              142.4,
+              0.0,
+              0.0,
+              -1.5,
+              0.021707999999999998
+            ],
+            "maxima": [
+              286.0,
+              0.22,
+              0.9047619047619048,
+              -1.2,
+              0.091656
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              3
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 137.4,
+              "emptyDistance": 0.02,
+              "utilization": 0.7222222222222223,
+              "tonnage": 5.0,
+              "carbon": 0.06432
+            },
+            "evaluation": {
+              "score": 0.08673827482291,
+              "normalizedLosses": [
+                0.006906077348066299,
+                0.09090909090909091,
+                0.0,
+                0.20833333333333334,
+                0.20689655172413793
+              ],
+              "contributions": [
+                0.0017265193370165747,
+                0.022727272727272728,
+                0.0,
+                0.03125,
+                0.03103448275862069
+              ]
+            },
+            "minima": [
+              136.4,
+              0.0,
+              0.2777777777777777,
+              -6.0,
+              0.038592
+            ],
+            "maxima": [
+              281.2,
+              0.22,
+              0.9230769230769231,
+              -1.2,
+              0.162944
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 122.4,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.061990595611285275,
+              "normalizedLosses": [
+                0.0,
+                0.2272727272727273,
+                0.0,
+                0.0,
+                0.034482758620689696
+              ],
+              "contributions": [
+                0.0,
+                0.05681818181818182,
+                0.0,
+                0.0,
+                0.005172413793103454
+              ]
+            },
+            "minima": [
+              122.4,
+              0.0,
+              0.5,
+              -15.0,
+              0.067536
+            ],
+            "maxima": [
+              136.20000000000002,
+              0.22,
+              0.9692307692307692,
+              -1.2,
+              0.285152
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 120.9,
+              "emptyDistance": 0.02,
+              "utilization": 0.8666666666666668,
+              "tonnage": 1.5,
+              "carbon": 0.03618
+            },
+            "evaluation": {
+              "score": 0.09679487179487178,
+              "normalizedLosses": [
+                0.0,
+                0.15384615384615385,
+                0.0,
+                0.0,
+                0.3888888888888888
+              ],
+              "contributions": [
+                0.0,
+                0.038461538461538464,
+                0.0,
+                0.0,
+                0.05833333333333331
+              ]
+            },
+            "minima": [
+              120.9,
+              0.0,
+              0.1333333333333332,
+              -1.5,
+              0.019296
+            ],
+            "maxima": [
+              242.10000000000002,
+              0.13,
+              0.75,
+              -1.2,
+              0.062712
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 114.9,
+              "emptyDistance": 0.04,
+              "utilization": 0.3333333333333333,
+              "tonnage": 6.0,
+              "carbon": 0.025728
+            },
+            "evaluation": {
+              "score": 0.18485294117647058,
+              "normalizedLosses": [
+                0.0,
+                0.25,
+                0.6117647058823529,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0625,
+                0.12235294117647058,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              114.9,
+              0.0,
+              0.2727272727272728,
+              -6.0,
+              0.025728
+            ],
+            "maxima": [
+              119.7,
+              0.16,
+              0.9166666666666667,
+              -1.2,
+              0.12435200000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 99.9,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.1460421450763204,
+              "normalizedLosses": [
+                0.0,
+                0.36363636363636365,
+                0.1393016344725111,
+                0.0,
+                0.18181818181818182
+              ],
+              "contributions": [
+                0.0,
+                0.09090909090909091,
+                0.02786032689450222,
+                0.0,
+                0.02727272727272727
+              ]
+            },
+            "minima": [
+              99.9,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              113.7,
+              0.12,
+              0.9413333333333334,
+              -1.2,
+              0.21011200000000002
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              5
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 98.4,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 1.5,
+              "carbon": 0.014472000000000002
+            },
+            "evaluation": {
+              "score": 0.00875576036866362,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0437788018433181,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.00875576036866362,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              98.4,
+              0.01,
+              0.1333333333333332,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              198.0,
+              0.19,
+              0.8947368421052632,
+              -1.2,
+              0.08442
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 92.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 6.0,
+              "carbon": 0.068608
+            },
+            "evaluation": {
+              "score": 0.05806451612903226,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.38709677419354843
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05806451612903226
+              ]
+            },
+            "minima": [
+              92.4,
+              0.0,
+              0.0,
+              -6.0,
+              0.017152
+            ],
+            "maxima": [
+              97.2,
+              0.22,
+              0.9444444444444444,
+              -1.2,
+              0.15008
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              4
+            ],
+            "candidateCount": 29,
+            "objectives": {
+              "waiting": 80.4,
+              "emptyDistance": 0.04,
+              "utilization": 0.4,
+              "tonnage": 12.0,
+              "carbon": 0.06003200000000001
+            },
+            "evaluation": {
+              "score": 0.1456461044361196,
+              "normalizedLosses": [
+                0.03225806451612903,
+                0.12,
+                0.33432392273402667,
+                0.21739130434782608,
+                0.05405405405405406
+              ],
+              "contributions": [
+                0.008064516129032258,
+                0.03,
+                0.06686478454680533,
+                0.03260869565217391,
+                0.008108108108108109
+              ]
+            },
+            "minima": [
+              77.4,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              170.4,
+              0.26,
+              0.9413333333333334,
+              -1.2,
+              0.322672
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              8
+            ],
+            "candidateCount": 10,
+            "objectives": {
+              "waiting": 79.2,
+              "emptyDistance": 0.0,
+              "utilization": 0.7999999999999998,
+              "tonnage": 1.2,
+              "carbon": 0.012060000000000001
+            },
+            "evaluation": {
+              "score": 0.15093632958801498,
+              "normalizedLosses": [
+                0.00374531835205989,
+                0.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "contributions": [
+                0.0009363295880149725,
+                0.0,
+                0.0,
+                0.15,
+                0.0
+              ]
+            },
+            "minima": [
+              78.9,
+              0.0,
+              0.20000000000000018,
+              -1.5,
+              0.012060000000000001
+            ],
+            "maxima": [
+              159.0,
+              0.13,
+              0.8461538461538461,
+              -1.2,
+              0.06994800000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 9,
+            "objectives": {
+              "waiting": 73.2,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 6.0,
+              "carbon": 0.025728000000000004
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              73.2,
+              0.01,
+              0.16666666666666663,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              78.0,
+              0.16,
+              0.8777777777777778,
+              -1.2,
+              0.137216
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              5
+            ],
+            "candidateCount": 23,
+            "objectives": {
+              "waiting": 66.7,
+              "emptyDistance": 0.01,
+              "utilization": 0.3611111111111111,
+              "tonnage": 6.5,
+              "carbon": 0.04502400000000001
+            },
+            "evaluation": {
+              "score": 0.16523089582653722,
+              "normalizedLosses": [
+                0.10718789407313997,
+                0.0,
+                0.23021308980213068,
+                0.6159420289855072,
+                0.0
+              ],
+              "contributions": [
+                0.026796973518284993,
+                0.0,
+                0.046042617960426135,
+                0.09239130434782608,
+                0.0
+              ]
+            },
+            "minima": [
+              58.2,
+              0.01,
+              0.5428571428571429,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              137.5,
+              0.35,
+              0.96,
+              -1.2,
+              0.31516800000000006
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 65.2,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 1.5,
+              "carbon": 0.014472000000000002
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              65.2,
+              0.01,
+              0.16666666666666663,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              131.6,
+              0.18,
+              0.8888888888888888,
+              -1.2,
+              0.082008
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 59.2,
+              "emptyDistance": 0.1,
+              "utilization": 0.16666666666666663,
+              "tonnage": 6.0,
+              "carbon": 0.05145600000000001
+            },
+            "evaluation": {
+              "score": 0.3569756554307117,
+              "normalizedLosses": [
+                0.0,
+                0.7500000000000002,
+                0.7640449438202247,
+                0.0,
+                0.11111111111111117
+              ],
+              "contributions": [
+                0.0,
+                0.18750000000000006,
+                0.15280898876404495,
+                0.0,
+                0.016666666666666677
+              ]
+            },
+            "minima": [
+              59.2,
+              0.04,
+              0.4285714285714286,
+              -6.0,
+              0.04288
+            ],
+            "maxima": [
+              64.7,
+              0.12,
+              0.9583333333333334,
+              -0.5,
+              0.12006400000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 44.2,
+              "emptyDistance": 0.11,
+              "utilization": 0.15384615384615383,
+              "tonnage": 15.0,
+              "carbon": 0.097552
+            },
+            "evaluation": {
+              "score": 0.3736844260197553,
+              "normalizedLosses": [
+                0.0,
+                0.7777777777777779,
+                0.7461999078765544,
+                0.0,
+                0.19999999999999996
+              ],
+              "contributions": [
+                0.0,
+                0.19444444444444448,
+                0.1492399815753109,
+                0.0,
+                0.029999999999999992
+              ]
+            },
+            "minima": [
+              44.2,
+              0.04,
+              0.44827586206896564,
+              -15.0,
+              0.067536
+            ],
+            "maxima": [
+              58.7,
+              0.13,
+              0.9814814814814815,
+              -0.5,
+              0.21761600000000003
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 42.7,
+              "emptyDistance": 0.06,
+              "utilization": 0.6842105263157894,
+              "tonnage": 1.5,
+              "carbon": 0.045828
+            },
+            "evaluation": {
+              "score": 0.13749999999999996,
+              "normalizedLosses": [
+                0.0,
+                0.25,
+                0.0,
+                0.0,
+                0.49999999999999983
+              ],
+              "contributions": [
+                0.0,
+                0.0625,
+                0.0,
+                0.0,
+                0.07499999999999997
+              ]
+            },
+            "minima": [
+              42.7,
+              0.04,
+              0.3157894736842106,
+              -1.5,
+              0.024120000000000003
+            ],
+            "maxima": [
+              43.7,
+              0.12,
+              0.8333333333333334,
+              -0.5,
+              0.06753600000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 36.7,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 6.0,
+              "carbon": 0.068608
+            },
+            "evaluation": {
+              "score": 0.05806451612903226,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.38709677419354843
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05806451612903226
+              ]
+            },
+            "minima": [
+              36.7,
+              0.0,
+              0.0,
+              -6.0,
+              0.017152
+            ],
+            "maxima": [
+              83.9,
+              0.22,
+              0.9810606060606061,
+              -0.5,
+              0.15008
+            ]
+          }
+        ],
+        "objectiveKeys": [
+          "waiting",
+          "emptyDistance",
+          "utilization",
+          "tonnage",
+          "carbon"
+        ]
+      },
+      "finishedAt": 1793621991471
+    },
+    {
+      "runId": "RUN-370558fd-5d0d-4dbb-b3c6-d2408c19a337",
+      "experimentId": "EXP-258afd96-f3c8-48ac-9276-9c4ed6080cd4",
+      "environmentId": "92a000b3525f8beee73dc543a12e83bac8c9b4ad3edda46cc02f20b2818beca3",
+      "config": {
+        "mapId": "现有 POI 地图",
+        "poiCount": 20,
+        "simulationDuration": 0,
+        "vehicleCount": 3,
+        "orderGenerationInterval": 1,
+        "randomSeed": 123,
+        "algorithm": "WEIGHTED",
+        "events": {
+          "WEATHER": true
+        },
+        "orderCount": 12,
+        "objectiveWeights": {
+          "waiting": 25.0,
+          "emptyDistance": 25.0,
+          "utilization": 20.0,
+          "tonnage": 15.0,
+          "carbon": 15.0
+        }
+      },
+      "modelId": "abd803a878331525fbff7cee4cc70515be517b9c1acb39591c35a901a99a1e79",
+      "completionPolicy": "ALL_ORDERS",
+      "orderCount": 12,
+      "completedOrderCount": 12,
+      "source": "BACKEND",
+      "status": "COMPLETED",
+      "progress": 100,
+      "startedAt": 1793621991208,
+      "metrics": {
+        "vehicleUtilization": 65.16,
+        "totalWaitTime": 32.99,
+        "totalEmptyDistance": 1.39,
+        "totalCarbonEmission": 1.85,
+        "cargoWaitingTonMinutes": 1201.08,
+        "capacityDistanceUtilization": 42.34,
+        "completedTonnage": 155.9,
+        "totalCompletionTimeH": 0.35,
+        "averageOrderCompletionTimeH": 0.19
+      },
+      "events": [
+        {
+          "eventId": "EVENT-1",
+          "eventType": "WEATHER",
+          "startTime": "2026-01-01T00:00:00",
+          "duration": 10,
+          "extraDelay": 11,
+          "affectedVehicleIds": [
+            1,
+            2,
+            3
+          ],
+          "affectedOrderIds": [
+            8
+          ]
+        }
+      ],
+      "simulationTime": "2026-01-01T00:21",
+      "taskCount": 30,
+      "completedTaskCount": 30,
+      "pendingOrderCount": 0,
+      "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+      "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+      "optimization": {
+        "weights": {
+          "waiting": 25.0,
+          "emptyDistance": 25.0,
+          "utilization": 20.0,
+          "tonnage": 15.0,
+          "carbon": 15.0
+        },
+        "samplesTruncated": true,
+        "decisionCount": 29,
+        "normalizedWeights": [
+          0.25,
+          0.25,
+          0.2,
+          0.15,
+          0.15
+        ],
+        "method": "LINEAR_WEIGHTED_SUM",
+        "candidateCount": 309,
+        "normalization": "MIN_MAX_PER_DECISION",
+        "decisionSamples": [
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 131.997,
+              "emptyDistance": 0.14,
+              "utilization": 0.29999999999999993,
+              "tonnage": 1.5,
+              "carbon": 0.048240000000000005
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ],
+            "maxima": [
+              131.997,
+              0.14,
+              0.7000000000000001,
+              -1.5,
+              0.048240000000000005
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 115.488,
+              "emptyDistance": 0.02,
+              "utilization": 0.75,
+              "tonnage": 6.0,
+              "carbon": 0.034304
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ],
+            "maxima": [
+              115.488,
+              0.02,
+              0.25,
+              -6.0,
+              0.034304
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:00",
+            "orderIds": [
+              1
+            ],
+            "candidateCount": 2,
+            "objectives": {
+              "waiting": 49.491,
+              "emptyDistance": 0.01,
+              "utilization": 0.25714285714285723,
+              "tonnage": 4.5,
+              "carbon": 0.052528
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ],
+            "maxima": [
+              49.491,
+              0.01,
+              0.7428571428571428,
+              -4.5,
+              0.052528
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              2
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 142.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 1.5,
+              "carbon": 0.031356
+            },
+            "evaluation": {
+              "score": 0.020689655172413796,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.13793103448275865
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.020689655172413796
+              ]
+            },
+            "minima": [
+              142.4,
+              0.0,
+              0.0,
+              -1.5,
+              0.021707999999999998
+            ],
+            "maxima": [
+              286.0,
+              0.22,
+              0.9047619047619048,
+              -1.2,
+              0.091656
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              3
+            ],
+            "candidateCount": 12,
+            "objectives": {
+              "waiting": 137.4,
+              "emptyDistance": 0.02,
+              "utilization": 0.7222222222222223,
+              "tonnage": 5.0,
+              "carbon": 0.06432
+            },
+            "evaluation": {
+              "score": 0.08673827482291,
+              "normalizedLosses": [
+                0.006906077348066299,
+                0.09090909090909091,
+                0.0,
+                0.20833333333333334,
+                0.20689655172413793
+              ],
+              "contributions": [
+                0.0017265193370165747,
+                0.022727272727272728,
+                0.0,
+                0.03125,
+                0.03103448275862069
+              ]
+            },
+            "minima": [
+              136.4,
+              0.0,
+              0.2777777777777777,
+              -6.0,
+              0.038592
+            ],
+            "maxima": [
+              281.2,
+              0.22,
+              0.9230769230769231,
+              -1.2,
+              0.162944
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:11",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 122.4,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.061990595611285275,
+              "normalizedLosses": [
+                0.0,
+                0.2272727272727273,
+                0.0,
+                0.0,
+                0.034482758620689696
+              ],
+              "contributions": [
+                0.0,
+                0.05681818181818182,
+                0.0,
+                0.0,
+                0.005172413793103454
+              ]
+            },
+            "minima": [
+              122.4,
+              0.0,
+              0.5,
+              -15.0,
+              0.067536
+            ],
+            "maxima": [
+              136.20000000000002,
+              0.22,
+              0.9692307692307692,
+              -1.2,
+              0.285152
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 120.9,
+              "emptyDistance": 0.02,
+              "utilization": 0.8666666666666668,
+              "tonnage": 1.5,
+              "carbon": 0.03618
+            },
+            "evaluation": {
+              "score": 0.09679487179487178,
+              "normalizedLosses": [
+                0.0,
+                0.15384615384615385,
+                0.0,
+                0.0,
+                0.3888888888888888
+              ],
+              "contributions": [
+                0.0,
+                0.038461538461538464,
+                0.0,
+                0.0,
+                0.05833333333333331
+              ]
+            },
+            "minima": [
+              120.9,
+              0.0,
+              0.1333333333333332,
+              -1.5,
+              0.019296
+            ],
+            "maxima": [
+              242.10000000000002,
+              0.13,
+              0.75,
+              -1.2,
+              0.062712
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 114.9,
+              "emptyDistance": 0.04,
+              "utilization": 0.3333333333333333,
+              "tonnage": 6.0,
+              "carbon": 0.025728
+            },
+            "evaluation": {
+              "score": 0.18485294117647058,
+              "normalizedLosses": [
+                0.0,
+                0.25,
+                0.6117647058823529,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0625,
+                0.12235294117647058,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              114.9,
+              0.0,
+              0.2727272727272728,
+              -6.0,
+              0.025728
+            ],
+            "maxima": [
+              119.7,
+              0.16,
+              0.9166666666666667,
+              -1.2,
+              0.12435200000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:12",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 99.9,
+              "emptyDistance": 0.05,
+              "utilization": 0.5,
+              "tonnage": 15.0,
+              "carbon": 0.07504000000000001
+            },
+            "evaluation": {
+              "score": 0.1460421450763204,
+              "normalizedLosses": [
+                0.0,
+                0.36363636363636365,
+                0.1393016344725111,
+                0.0,
+                0.18181818181818182
+              ],
+              "contributions": [
+                0.0,
+                0.09090909090909091,
+                0.02786032689450222,
+                0.0,
+                0.02727272727272727
+              ]
+            },
+            "minima": [
+              99.9,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              113.7,
+              0.12,
+              0.9413333333333334,
+              -1.2,
+              0.21011200000000002
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              5
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 98.4,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 1.5,
+              "carbon": 0.014472000000000002
+            },
+            "evaluation": {
+              "score": 0.00875576036866362,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0437788018433181,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.00875576036866362,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              98.4,
+              0.01,
+              0.1333333333333332,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              198.0,
+              0.19,
+              0.8947368421052632,
+              -1.2,
+              0.08442
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 11,
+            "objectives": {
+              "waiting": 92.4,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 6.0,
+              "carbon": 0.068608
+            },
+            "evaluation": {
+              "score": 0.05806451612903226,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.38709677419354843
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05806451612903226
+              ]
+            },
+            "minima": [
+              92.4,
+              0.0,
+              0.0,
+              -6.0,
+              0.017152
+            ],
+            "maxima": [
+              97.2,
+              0.22,
+              0.9444444444444444,
+              -1.2,
+              0.15008
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:13",
+            "orderIds": [
+              4
+            ],
+            "candidateCount": 29,
+            "objectives": {
+              "waiting": 80.4,
+              "emptyDistance": 0.04,
+              "utilization": 0.4,
+              "tonnage": 12.0,
+              "carbon": 0.06003200000000001
+            },
+            "evaluation": {
+              "score": 0.1456461044361196,
+              "normalizedLosses": [
+                0.03225806451612903,
+                0.12,
+                0.33432392273402667,
+                0.21739130434782608,
+                0.05405405405405406
+              ],
+              "contributions": [
+                0.008064516129032258,
+                0.03,
+                0.06686478454680533,
+                0.03260869565217391,
+                0.008108108108108109
+              ]
+            },
+            "minima": [
+              77.4,
+              0.01,
+              0.4285714285714286,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              170.4,
+              0.26,
+              0.9413333333333334,
+              -1.2,
+              0.322672
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              8
+            ],
+            "candidateCount": 10,
+            "objectives": {
+              "waiting": 79.2,
+              "emptyDistance": 0.0,
+              "utilization": 0.7999999999999998,
+              "tonnage": 1.2,
+              "carbon": 0.012060000000000001
+            },
+            "evaluation": {
+              "score": 0.15093632958801498,
+              "normalizedLosses": [
+                0.00374531835205989,
+                0.0,
+                0.0,
+                1.0,
+                0.0
+              ],
+              "contributions": [
+                0.0009363295880149725,
+                0.0,
+                0.0,
+                0.15,
+                0.0
+              ]
+            },
+            "minima": [
+              78.9,
+              0.0,
+              0.20000000000000018,
+              -1.5,
+              0.012060000000000001
+            ],
+            "maxima": [
+              159.0,
+              0.13,
+              0.8461538461538461,
+              -1.2,
+              0.06994800000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 9,
+            "objectives": {
+              "waiting": 73.2,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 6.0,
+              "carbon": 0.025728000000000004
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              73.2,
+              0.01,
+              0.16666666666666663,
+              -6.0,
+              0.025728000000000004
+            ],
+            "maxima": [
+              78.0,
+              0.16,
+              0.8777777777777778,
+              -1.2,
+              0.137216
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:14",
+            "orderIds": [
+              5
+            ],
+            "candidateCount": 23,
+            "objectives": {
+              "waiting": 66.7,
+              "emptyDistance": 0.01,
+              "utilization": 0.3611111111111111,
+              "tonnage": 6.5,
+              "carbon": 0.04502400000000001
+            },
+            "evaluation": {
+              "score": 0.16523089582653722,
+              "normalizedLosses": [
+                0.10718789407313997,
+                0.0,
+                0.23021308980213068,
+                0.6159420289855072,
+                0.0
+              ],
+              "contributions": [
+                0.026796973518284993,
+                0.0,
+                0.046042617960426135,
+                0.09239130434782608,
+                0.0
+              ]
+            },
+            "minima": [
+              58.2,
+              0.01,
+              0.5428571428571429,
+              -15.0,
+              0.04502400000000001
+            ],
+            "maxima": [
+              137.5,
+              0.35,
+              0.96,
+              -1.2,
+              0.31516800000000006
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              9
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 65.2,
+              "emptyDistance": 0.01,
+              "utilization": 0.8333333333333334,
+              "tonnage": 1.5,
+              "carbon": 0.014472000000000002
+            },
+            "evaluation": {
+              "score": 0.0,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            },
+            "minima": [
+              65.2,
+              0.01,
+              0.16666666666666663,
+              -1.5,
+              0.014472000000000002
+            ],
+            "maxima": [
+              131.6,
+              0.18,
+              0.8888888888888888,
+              -1.2,
+              0.082008
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 59.2,
+              "emptyDistance": 0.1,
+              "utilization": 0.16666666666666663,
+              "tonnage": 6.0,
+              "carbon": 0.05145600000000001
+            },
+            "evaluation": {
+              "score": 0.3569756554307117,
+              "normalizedLosses": [
+                0.0,
+                0.7500000000000002,
+                0.7640449438202247,
+                0.0,
+                0.11111111111111117
+              ],
+              "contributions": [
+                0.0,
+                0.18750000000000006,
+                0.15280898876404495,
+                0.0,
+                0.016666666666666677
+              ]
+            },
+            "minima": [
+              59.2,
+              0.04,
+              0.4285714285714286,
+              -6.0,
+              0.04288
+            ],
+            "maxima": [
+              64.7,
+              0.12,
+              0.9583333333333334,
+              -0.5,
+              0.12006400000000002
+            ]
+          },
+          {
+            "vehicleId": 3,
+            "simulationTime": "2026-01-01T00:15",
+            "orderIds": [
+              10
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 44.2,
+              "emptyDistance": 0.11,
+              "utilization": 0.15384615384615383,
+              "tonnage": 15.0,
+              "carbon": 0.097552
+            },
+            "evaluation": {
+              "score": 0.3736844260197553,
+              "normalizedLosses": [
+                0.0,
+                0.7777777777777779,
+                0.7461999078765544,
+                0.0,
+                0.19999999999999996
+              ],
+              "contributions": [
+                0.0,
+                0.19444444444444448,
+                0.1492399815753109,
+                0.0,
+                0.029999999999999992
+              ]
+            },
+            "minima": [
+              44.2,
+              0.04,
+              0.44827586206896564,
+              -15.0,
+              0.067536
+            ],
+            "maxima": [
+              58.7,
+              0.13,
+              0.9814814814814815,
+              -0.5,
+              0.21761600000000003
+            ]
+          },
+          {
+            "vehicleId": 1,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              12
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 42.7,
+              "emptyDistance": 0.06,
+              "utilization": 0.6842105263157894,
+              "tonnage": 1.5,
+              "carbon": 0.045828
+            },
+            "evaluation": {
+              "score": 0.13749999999999996,
+              "normalizedLosses": [
+                0.0,
+                0.25,
+                0.0,
+                0.0,
+                0.49999999999999983
+              ],
+              "contributions": [
+                0.0,
+                0.0625,
+                0.0,
+                0.0,
+                0.07499999999999997
+              ]
+            },
+            "minima": [
+              42.7,
+              0.04,
+              0.3157894736842106,
+              -1.5,
+              0.024120000000000003
+            ],
+            "maxima": [
+              43.7,
+              0.12,
+              0.8333333333333334,
+              -0.5,
+              0.06753600000000001
+            ]
+          },
+          {
+            "vehicleId": 2,
+            "simulationTime": "2026-01-01T00:16",
+            "orderIds": [
+              7
+            ],
+            "candidateCount": 8,
+            "objectives": {
+              "waiting": 36.7,
+              "emptyDistance": 0.0,
+              "utilization": 1.0,
+              "tonnage": 6.0,
+              "carbon": 0.068608
+            },
+            "evaluation": {
+              "score": 0.05806451612903226,
+              "normalizedLosses": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.38709677419354843
+              ],
+              "contributions": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05806451612903226
+              ]
+            },
+            "minima": [
+              36.7,
+              0.0,
+              0.0,
+              -6.0,
+              0.017152
+            ],
+            "maxima": [
+              83.9,
+              0.22,
+              0.9810606060606061,
+              -0.5,
+              0.15008
+            ]
+          }
+        ],
+        "objectiveKeys": [
+          "waiting",
+          "emptyDistance",
+          "utilization",
+          "tonnage",
+          "carbon"
+        ]
+      },
+      "finishedAt": 1793621991353
+    }
+  ]
+}

@@ -10,13 +10,14 @@ import java.util.Map;
 
 @Repository
 public class Dao {
+    private final org.example.service.Database database;
+    public Dao(org.example.service.Database database) { this.database = database; }
     public void clearCarStateTable(String url, String username, String password) {
-        try (Connection conn = DriverManager.getConnection(url, username, password);
+        try (Connection conn = database.open();
              Statement st = conn.createStatement()) {
 
-            // 推荐：DELETE 更通用（TRUNCATE 遇到外键/权限可能失败）
+            // DELETE 更通用（TRUNCATE 遇到外键/权限可能失败）
             st.executeUpdate("DELETE FROM car_state");
-            // 如果你确定没有外键约束，也可以用：
             // st.executeUpdate("TRUNCATE TABLE car_state");
 
         } catch (SQLException e) {
@@ -30,7 +31,7 @@ public class Dao {
         PreparedStatement ps = null;
 
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = database.open();
 
             // REPLACE INTO：如果 car_id 已存在，会先删除旧行再插入新行（符合你“删除上一次”的需求）
             String sql = """
@@ -70,7 +71,7 @@ public class Dao {
         PreparedStatement ps = null;
 
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = database.open();
             ps = conn.prepareStatement("DELETE FROM car_state WHERE car_id = ?");
             ps.setInt(1, carId);
             ps.executeUpdate();
@@ -94,9 +95,10 @@ public class Dao {
         List<Map<String, Object>> resultList = new ArrayList<>();
 
         try {
-            conn = DriverManager.getConnection(url, username, password);
+            conn = database.open();
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM " + table_name;
+            if (!table_name.matches("[A-Za-z_][A-Za-z0-9_]*")) throw new IllegalArgumentException("无效表名");
+            String sql = "SELECT location_name,location,type,id FROM `" + table_name + "` ORDER BY id";
             rs = stmt.executeQuery(sql);
 
 

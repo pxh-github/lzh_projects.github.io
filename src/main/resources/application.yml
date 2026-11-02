@@ -1,38 +1,65 @@
-# application.yml
 server:
-  port: 9090
+  port: 9091
+
 spring:
+  web:
+    resources:
+      static-locations:
+        - "classpath:/static/"
+        - "file:WebSource/"
   datasource:
-    url: "jdbc:mysql://localhost/tran_db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai"
-    username: root
-    password: 123456
+    url: "${DB_URL:jdbc:mysql://127.0.0.1:3306/tran_db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&connectTimeout=5000&socketTimeout=30000}"
+    username: "${DB_USER:root}"
+    password: "${DB_PASSWORD:}"
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 5000
+      validation-timeout: 2000
+      max-lifetime: 600000
+      idle-timeout: 120000
     tableName: "location"
-    sql: "INSERT INTO location(location_name,location,type,address,id,created_at,update_at,role) value(?,?,?,?,?,?,?,?) on  DUPLICATE key update update_at=values(update_at)"
-    jpa:
-      open-in-view: false
+    sql: "INSERT INTO location(location_name,location,type,address,id,created_at,update_at,role) value(?,?,?,?,?,?,?,?) on DUPLICATE key update update_at=values(update_at)"
+
 amap:
-  webserviceKey: "1d830d8718ed7ad1452d6bbdfe3f447a"
+  webserviceKey: "${AMAP_WEBSERVICE_KEY:}"
 
-api:
-  key: ["16cda5b3f9138bebf5db623d4285866e","16cda5b3f9138bebf5db623d4285866e","8e61e1033f71bb5c37ff3e471a689e34","cde7b6cb4e507a64d4b24bf88f2c86a9"]
-  apiUrl: "https://restapi.amap.com/v5/place/text?types=010000&region=四川省&page_size=25&page_num="
-  urlSuffix: "&key="
-#spring:
-#  application:
-#    name: works
-#  datasource:
-#    url: jdbc:hsqldb:file:testdb
-#    username: root
-#    password: 123456
-#    driver-class-name: org.hsqldb.jdbc.JDBCDriver
-#    hikari:
-#      auto-commit: false
-#      connection-timeout: 3000
-#      validation-timeout: 3000
-#      max-lifetime: 60000
-#      maximum-pool-size: 20
-#      minimum-idle: 1
-#  pebble:
-#    suffix:
-#    cache: false
+dispatch:
+  revenuePerTonKm: 1.50
+  cargoLossExpK: 1.05
+  cargoLossBaseCoeff: 3.00
+  loadingCostPerTon: 8.00
+  waitBonusPerHour: 20.00
+  waitBonusCap: 300.00
+  penaltyPerTonPerHour: 5.00
+  schedulerEnabled: false
 
+vehicleType:
+  small15:
+    actualSpeedKmh: 100
+    simSpeedKms: 200
+    wearCostPerHour: 18
+    fuelConsumptionPer100km: 9
+    fuelPricePerLiter: 8
+    maxLoadTon: 1.5
+  medium6:
+    actualSpeedKmh: 95
+    simSpeedKms: 200
+    wearCostPerHour: 30
+    fuelConsumptionPer100km: 16
+    fuelPricePerLiter: 8
+    maxLoadTon: 6
+  large15:
+    actualSpeedKmh: 90
+    simSpeedKms: 200
+    wearCostPerHour: 46
+    fuelConsumptionPer100km: 28
+    fuelPricePerLiter: 8
+    maxLoadTon: 15
+  heavy40:
+    actualSpeedKmh: 80
+    simSpeedKms: 200
+    wearCostPerHour: 75
+    fuelConsumptionPer100km: 42
+    fuelPricePerLiter: 8
+    maxLoadTon: 40

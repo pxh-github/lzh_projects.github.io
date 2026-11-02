@@ -1,0 +1,149 @@
+{
+  "existingWorkspaceChanges": "Preserved; no git reset, no commit",
+  "date": "2026-11-02",
+  "build": "PASS",
+  "hashes": [
+    {
+      "path": "src/main/java/org/example/service/ObjectiveWeights.java",
+      "sha256": "168EADC93FB434DDBFAFB124B9AEBED49974A34AB7F96D674C382B2F19F8AD10"
+    },
+    {
+      "path": "src/main/java/org/example/service/WeightedObjective.java",
+      "sha256": "4AFFD3D56C8989158F1D9418E5186C9C1A2F5A4311F321E993844624E5C49872"
+    },
+    {
+      "path": "src/main/java/org/example/service/DispatchService.java",
+      "sha256": "A8F2CC2D2295CC831820803EDAFA6A7F19789524020EF1485DF9B1EF178AE526"
+    },
+    {
+      "path": "src/main/java/org/example/sandbox/ExperimentConfig.java",
+      "sha256": "F96B7C09272E39BDDDD961C94F6F33EAC26B2E8FD089931C6B81675EA78AC164"
+    },
+    {
+      "path": "src/main/java/org/example/sandbox/SandboxEngine.java",
+      "sha256": "7DE1438A575CD811C5C73984CC7D0459C083EFE036DB9AA40DBAF4DD50C63143"
+    },
+    {
+      "path": "src/main/java/org/example/sandbox/SandboxService.java",
+      "sha256": "0512E346180FF88F10A947BEBAD5A7899AB4E86B9A6DEA7FD83F06CDFEFA2835"
+    },
+    {
+      "path": "src/main/java/org/example/sandbox/SandboxStore.java",
+      "sha256": "408F0B9193C30CD62603925C66F7128020B2B6E30BAC831A56C5B8C946E8F54A"
+    },
+    {
+      "path": "WebSource/html/sandbox.html",
+      "sha256": "520BC89901A163BD744B47DC63A9F3D01B45D648554454D36EE3E05A856A5AA0"
+    },
+    {
+      "path": "WebSource/js/sandbox.js",
+      "sha256": "911DC11813BD5F21A8CA00D44C938283957FBB72D5AC217AA25EF74B06100BA4"
+    },
+    {
+      "path": "WebSource/js/services/sandbox.js",
+      "sha256": "49D37606C1EE3E0F7966A6BAA782846E0502BD3100BFD864816D79D69DDE2357"
+    },
+    {
+      "path": "WebSource/js/services/metrics.js",
+      "sha256": "64B7099DCB76DD4E05D09B407D79E3DBDF6B31649DCDB0E041C8F4133A5935E7"
+    },
+    {
+      "path": "WebSource/css/sandbox.css",
+      "sha256": "9A7152058ED11424205A062C9DEFCF81C148BDFD3E4C6AD6F3E9198ECFC75872"
+    },
+    {
+      "path": "target/springboot-hello-1.0-SNAPSHOT.jar",
+      "sha256": "3E0B243B59419CFA84DC867F5687DD8188DA7AF9873AB75E71D8B2891268A973"
+    }
+  ],
+  "backend": {
+    "suites": [
+      {
+        "name": "org.example.service.AlgorithmExecutionAuditTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      {
+        "name": "org.example.service.BackendMySqlIntegrationTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.example.service.DispatchSafetyTest",
+        "tests": 16,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.example.service.RouteCacheTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.example.service.SandboxQueueTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.example.service.SchedulerSafetyTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "name": "org.example.service.WeightedDispatchTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "errors": 0,
+    "skipped": 1,
+    "failures": 0,
+    "passed": 39
+  },
+  "browser": {
+    "weightedConfiguration": "PASS",
+    "matchingBaseline": "PASS",
+    "jsonDownload": "PASS",
+    "csvDownload": "PASS",
+    "completedRun": "PASS",
+    "desktopAndMobile": "PASS",
+    "scope": "isolated temporary MySQL schema"
+  },
+  "frontend": {
+    "syntax": "PASS",
+    "failures": 0,
+    "passed": 27
+  },
+  "exampleIds": {
+    "baselineExperiment": "EXP-03682acf-3678-4ea8-8da1-792ffe1128d8",
+    "baseline": "RUN-a533fa0f-d859-45ea-a2e2-e25fdb939515",
+    "candidate": "RUN-c8483453-79a6-4125-b70e-b1f360b64112",
+    "candidateExperiment": "EXP-05abda6d-2cbe-47a2-9ba0-e72ad5ecd2da"
+  },
+  "historicalAudit": "Skipped by default; bound to the previous frozen model, not used to assert current-model historical reproduction",
+  "entry": "http://localhost:9091/html/sandbox.html",
+  "modelVersion": "dispatch-20261102-weighted-v1|sandbox-all-orders-v3",
+  "serverProcessId": 20888,
+  "formalExample": {
+    "orders": 20,
+    "source": "reports/2026-11-02-正式入口同条件结果.json",
+    "status": "COMPLETED",
+    "screenshot": "reports/2026-11-02-正式入口对比.png",
+    "weightedCandidates": 626,
+    "weightedDecisions": 50,
+    "completedTonnage": 277.4
+  }
+}

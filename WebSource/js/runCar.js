@@ -17,11 +17,10 @@ let cars = [];                // 所有小车对象
 let polylines = [];           // 所有路径对象
 let carIdCounter = 1;         // 小车编号自增
 
-// ★ 使用 Web 服务 Key（不是 JS Key）
-const WEB_KEY = "1d830d8718ed7ad1452d6bbdfe3f447a";
+// Web Service requests use the backend proxy.
 
 // -------------------- 1. 拉取 POI 数据 --------------------
-axios.get("http://localhost:9090/user").then(res => {
+axios.get("http://localhost:9091/user").then(res => {
     poiList = res.data;
     console.log("POI 数据：", poiList);
 });
@@ -54,9 +53,10 @@ function getRotationAngle(p1, p2) {
 // -------------------- 2. 调用路径规划 API --------------------
 async function getRoutePoints(originLoc, destLoc) {
     const url =
-        `https://restapi.amap.com/v5/direction/driving?origin=${originLoc}&destination=${destLoc}&show_fields=polyline&extensions=all&key=${WEB_KEY}`;
+        `/amap/driving?origin=${encodeURIComponent(originLoc)}&destination=${encodeURIComponent(destLoc)}`;
 
-    const res = await axios.get(url);
+    const response = await axios.get(url);
+    const res = { data: JSON.parse(response.data.raw) };
     const route = res.data.route;
 
     if (!route || !route.paths) return [];

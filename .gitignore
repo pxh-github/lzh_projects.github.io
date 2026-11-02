@@ -36,3 +36,24 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Local configuration and credentials ###
+.env
+.env.*
+!.env.example
+/config/application.properties
+/config/application-local.yml
+/WebSource/js/amap-config.local.js
+
+### Editor state, logs, captures and generated artifacts ###
+.idea/
+*.log
+*.log.*
+*.har
+__pycache__/
+*.py[cod]
+/.chart-data-*/
+/.ppt-build/
+/tmp/
+/output/
+/reports/.*/

@@ -1,0 +1,8 @@
+.sandbox-body #algorithm.weighted-active{max-height:none;overflow:visible}
+#objective-settings{margin:18px 0;padding:14px 16px;border:1px solid #dce6f3;border-radius:10px;background:#f9fbff;min-width:0}
+#objective-settings legend{padding:0 7px;font-size:12px;font-weight:600;color:#315579}
+#objective-settings .field{margin:12px 0;grid-template-columns:minmax(130px,1fr) minmax(80px,1fr)}
+#objective-settings button,#run-baseline{border:1px solid #dce6f3;border-radius:8px;padding:8px 12px;background:white;color:#315579;font:inherit;font-size:12px}
+#weight-summary{padding:10px;background:#edf3fc;border-radius:8px;color:#315579;line-height:1.9}
+#run-objectives{line-height:1.9;overflow-wrap:anywhere}
+@media(max-width:760px){#objective-settings{padding:10px}#objective-settings .field{grid-template-columns:1fr minmax(80px,.7fr)}}

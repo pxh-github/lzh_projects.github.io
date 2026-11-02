@@ -1,0 +1,47 @@
+{
+  "sceneId": "205932ae-6217-4459-928a-73a75dd8d3ea",
+  "simulationTime": "2027-01-15T18:57:15",
+  "stats": {
+    "totalWaitTime": 1306313.4,
+    "completedTonnage": 378.0,
+    "totalCarbonEmission": 75793.268136,
+    "vehicleCount": 11,
+    "idleVehicleCount": 11,
+    "orderCount": 30,
+    "doneOrderCount": 30,
+    "taskCount": 57,
+    "totalRevenue": 762621.54,
+    "totalCost": 287515.49,
+    "totalProfit": 475106.06,
+    "totalTaskHours": 1478.29,
+    "profitPerHour": 321.39,
+    "totalPendingWeight": 0.0,
+    "totalEmptyMileageKm": 53344.86,
+    "totalLoadedMileageKm": 83359.71,
+    "emptyMileageRate": 39.02,
+    "avgLoadUtilization": 70.7339181287,
+    "totalCargoWaitHours": 2140.01
+  },
+  "metrics": {
+    "totalWaitTime": 1306313.4,
+    "totalEmptyDistance": 53344.86,
+    "vehicleUtilization": 60.98,
+    "completedTonnage": 378.0,
+    "totalCarbonEmission": 75793.268136,
+    "runningVehicleCount": 0,
+    "totalVehicleCount": 11,
+    "pendingOrderCount": 0,
+    "orderCompletionRate": 100.0,
+    "simulationTime": "2027-01-15T18:57:15",
+    "activeEventCount": 0
+  },
+  "cycle": {
+    "mode": "OPTIMIZED",
+    "totalTasksGenerated": 57,
+    "lastRoundTasks": 0,
+    "running": true,
+    "simTime": "2027-01-15T18:57:15"
+  },
+  "capturedAt": "2026-10-12T21:42:10.5369388",
+  "sampleId": 83242
+}

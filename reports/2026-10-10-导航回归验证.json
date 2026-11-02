@@ -1,0 +1,64 @@
+{
+  "poiAttached": {
+    "visible": true,
+    "mapAssigned": true,
+    "mapValueType": "object"
+  },
+  "poiDetached": {
+    "visible": false,
+    "mapAssigned": true,
+    "button": "false"
+  },
+  "regularReturn": {
+    "cursor": 2191,
+    "animations": [],
+    "active": 0,
+    "poiDefaultHidden": true
+  },
+  "browserBack": {
+    "cursor": 2191,
+    "animations": [],
+    "active": 0,
+    "pageshow": [
+      false
+    ]
+  },
+  "errors": [],
+  "writes": [],
+  "poiVisibilityVerified": {
+    "on": {
+      "pressed": "true",
+      "nativeVisibilityFlag": true
+    },
+    "off": {
+      "pressed": "false",
+      "nativeVisibilityFlag": false
+    }
+  },
+  "note": "Fresh browser context; MassMarks getMap and _opts.visible are not authoritative. Native show/hide updates its il visibility flag.",
+  "curve": {
+    "taskId": 2191,
+    "anchorCount": 3,
+    "pathCount": 65,
+    "illustration": true,
+    "startMatches": true,
+    "endMatches": true
+  },
+  "mobile": {
+    "viewport": 390,
+    "scrollWidth": 390,
+    "bodyHeight": 2490.78125
+  },
+  "freshReturn": {
+    "cursor": 2191,
+    "active": 0,
+    "defaultHidden": true
+  },
+  "freshHistory": {
+    "cursor": 2191,
+    "active": 0,
+    "defaultHidden": true
+  },
+  "latestErrors": [],
+  "latestBusinessWrites": []
+}

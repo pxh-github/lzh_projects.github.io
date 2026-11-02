@@ -1,0 +1,147 @@
+{
+  "method" : "Read-only frozen snapshot; actual engine recomputed in memory; no database writes",
+  "runId" : "RUN-40633a74-bae6-46ef-95ca-670fec5192b2",
+  "config" : {
+    "mapId" : "现有 POI 地图",
+    "poiCount" : 2419,
+    "simulationDuration" : 24,
+    "vehicleCount" : 10,
+    "orderGenerationInterval" : 120,
+    "randomSeed" : 222,
+    "algorithm" : "BASELINE",
+    "events" : {
+      "WEATHER" : false,
+      "CARGO_DAMAGE" : false,
+      "SHORTAGE" : false,
+      "TRAFFIC_JAM" : false,
+      "VEHICLE_FAULT" : false
+    }
+  },
+  "result" : {
+    "metrics" : {
+      "totalWaitTime" : 0.00,
+      "totalCarbonEmission" : 0.00,
+      "totalEmptyDistance" : 0.00,
+      "vehicleUtilization" : 0,
+      "completedTonnage" : 0.00
+    },
+    "events" : [ ],
+    "taskCount" : 10,
+    "completedTaskCount" : 0,
+    "pendingOrderCount" : 12,
+    "simulationTime" : "2026-01-02T00:00",
+    "routeModel" : "球面距离×1.25；同一POI快照、相同计价与速度模型",
+    "carbonModel" : "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算"
+  },
+  "tasks" : [ {
+    "vehicle" : 1,
+    "order" : 1,
+    "weight" : 38.00,
+    "start" : "2026-01-01T00:00",
+    "finish" : "2026-01-02T19:47",
+    "status" : "RUNNING",
+    "emptyKm" : 1825.79,
+    "loadedKm" : 1677.47,
+    "profit" : 80142.59,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 2,
+    "order" : 2,
+    "weight" : 12.00,
+    "start" : "2026-01-01T02:00",
+    "finish" : "2026-01-02T04:13",
+    "status" : "RUNNING",
+    "emptyKm" : 1113.66,
+    "loadedKm" : 1246.21,
+    "profit" : 15813.72,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 3,
+    "order" : 3,
+    "weight" : 3.50,
+    "start" : "2026-01-01T04:00",
+    "finish" : "2026-01-02T19:49",
+    "status" : "RUNNING",
+    "emptyKm" : 2013.06,
+    "loadedKm" : 1769.83,
+    "profit" : 3216.42,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 4,
+    "order" : 4,
+    "weight" : 1.50,
+    "start" : "2026-01-01T06:00",
+    "finish" : "2026-01-02T15:28",
+    "status" : "RUNNING",
+    "emptyKm" : 1678.89,
+    "loadedKm" : 1667.24,
+    "profit" : 723.30,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 5,
+    "order" : 4,
+    "weight" : 15.00,
+    "start" : "2026-01-01T06:00",
+    "finish" : "2026-01-02T14:07",
+    "status" : "RUNNING",
+    "emptyKm" : 1224.32,
+    "loadedKm" : 1667.24,
+    "profit" : 29395.92,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 6,
+    "order" : 4,
+    "weight" : 6.00,
+    "start" : "2026-01-01T06:00",
+    "finish" : "2026-01-02T18:04",
+    "status" : "RUNNING",
+    "emptyKm" : 1758.67,
+    "loadedKm" : 1667.24,
+    "profit" : 9472.20,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 7,
+    "order" : 4,
+    "weight" : 6.00,
+    "start" : "2026-01-01T06:00",
+    "finish" : "2026-01-02T03:32",
+    "status" : "RUNNING",
+    "emptyKm" : 378.47,
+    "loadedKm" : 1667.24,
+    "profit" : 11688.90,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 8,
+    "order" : 4,
+    "weight" : 9.50,
+    "start" : "2026-01-01T06:00",
+    "finish" : "2026-01-02T14:50",
+    "status" : "RUNNING",
+    "emptyKm" : 958.83,
+    "loadedKm" : 1667.24,
+    "profit" : 12373.66,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 9,
+    "order" : 5,
+    "weight" : 30.00,
+    "start" : "2026-01-01T08:00",
+    "finish" : "2026-01-02T09:16",
+    "status" : "RUNNING",
+    "emptyKm" : 1378.47,
+    "loadedKm" : 642.18,
+    "profit" : 19884.21,
+    "selectedPlanner" : "BT"
+  }, {
+    "vehicle" : 10,
+    "order" : 6,
+    "weight" : 5.00,
+    "start" : "2026-01-01T10:00",
+    "finish" : "2026-01-02T04:07",
+    "status" : "RUNNING",
+    "emptyKm" : 612.11,
+    "loadedKm" : 1109.00,
+    "profit" : 5525.64,
+    "selectedPlanner" : "BT"
+  } ]
+}

@@ -1,0 +1,82 @@
+{
+  "context": "Independent MySQL integration fixture; live tran_db untouched",
+  "before": {
+    "task": {
+      "simulationStartedAt": "2026-10-10T01:02:01",
+      "simulationFinishedAt": "2026-10-10T01:03:01",
+      "id": 12,
+      "taskCode": "BTde591db86cd44190961707f83938a076",
+      "orderId": 10,
+      "vehicleId": 19,
+      "assignedWeight": 6,
+      "pickupDistanceKm": 0.04,
+      "pickupTimeH": 0,
+      "transportDistanceKm": 0.04,
+      "transportTimeH": 0,
+      "vehicleWaitTimeH": 0,
+      "cargoWaitTimeH": 0,
+      "cost1": 0.12,
+      "cost2": 0,
+      "cost3": 48,
+      "totalCost": 48.12,
+      "totalRevenue": 0.36,
+      "netProfit": -47.76,
+      "score": -47.76,
+      "routePolyline": "104.001,30;104.0013,30;104.0016,30",
+      "status": "RUNNING"
+    },
+    "scene": "37aafd94-2e11-4a84-9dfb-358118db2883",
+    "cursor": 12
+  },
+  "after": {
+    "task": {
+      "simulationStartedAt": "2026-10-10T01:07:01",
+      "simulationFinishedAt": "2026-10-10T01:08:01",
+      "id": 12,
+      "taskCode": "BTde591db86cd44190961707f83938a076",
+      "orderId": 10,
+      "vehicleId": 19,
+      "assignedWeight": 6,
+      "pickupDistanceKm": 0.04,
+      "pickupTimeH": 0.08,
+      "transportDistanceKm": 0.04,
+      "transportTimeH": 0,
+      "vehicleWaitTimeH": 0.08,
+      "cargoWaitTimeH": 0.08,
+      "cost1": 2.62,
+      "cost2": 0.07,
+      "cost3": 48,
+      "totalCost": 50.69,
+      "totalRevenue": 0.36,
+      "netProfit": -50.33,
+      "score": -50.33,
+      "routePolyline": "104.001,30;104.0013,30;104.0016,30",
+      "status": "RUNNING"
+    },
+    "events": {
+      "activeCount": 1,
+      "events": [
+        {
+          "eventId": 3,
+          "sceneId": "37aafd94-2e11-4a84-9dfb-358118db2883",
+          "eventType": "VEHICLE_FAULT",
+          "vehicleId": 19,
+          "startTime": "2026-10-10T01:01:59",
+          "endTime": "2026-10-10T01:11:59",
+          "durationMinutes": 10,
+          "delayMinutes": 5,
+          "affectedVehicleIds": [
+            19
+          ],
+          "affectedTaskCount": 1,
+          "status": "ACTIVE",
+          "source": "SIMULATION"
+        }
+      ],
+      "sceneId": "37aafd94-2e11-4a84-9dfb-358118db2883",
+      "source": "SIMULATION",
+      "simulationTime": "2026-10-10T01:01:59"
+    },
+    "highlighted": 1
+  }
+}

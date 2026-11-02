@@ -1,0 +1,112 @@
+{
+  "baseline": {
+    "runId": "RUN-80a45e4a-2a97-4711-9477-ff41c8166c66",
+    "experimentId": "EXP-637b8c90-d45c-4b0e-aa55-b5b0aacca507",
+    "environmentId": "a3c19e90e30a3f3f8d2f7a655f6d859507782b3ff569c4028bfb3f5791e1fc98",
+    "config": {
+      "mapId": "现有 POI 地图",
+      "poiCount": 2419,
+      "simulationDuration": 0,
+      "vehicleCount": 10,
+      "orderGenerationInterval": 120,
+      "randomSeed": 222,
+      "algorithm": "BASELINE",
+      "events": {
+        "TRAFFIC_JAM": false,
+        "SHORTAGE": false,
+        "CARGO_DAMAGE": false,
+        "WEATHER": false,
+        "VEHICLE_FAULT": false
+      },
+      "orderCount": 12
+    },
+    "modelId": "ad645f0aa463770665294c87c6c2d09c0acc3fadb27bf56b449b7dd7212b50c8",
+    "completionPolicy": "ALL_ORDERS",
+    "orderCount": 12,
+    "completedOrderCount": 12,
+    "source": "BACKEND",
+    "status": "COMPLETED",
+    "progress": 100,
+    "startedAt": 1791810930201,
+    "metrics": {
+      "totalWaitTime": 3240,
+      "totalCarbonEmission": 35618.81,
+      "totalEmptyDistance": 23925.21,
+      "vehicleUtilization": 55.16,
+      "completedTonnage": 182.4,
+      "totalCompletionTimeH": 97.55,
+      "averageOrderCompletionTimeH": 43.29
+    },
+    "events": [],
+    "simulationTime": "2026-01-05T01:33",
+    "taskCount": 20,
+    "completedTaskCount": 20,
+    "pendingOrderCount": 0,
+    "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+    "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+    "finishedAt": 1791810930257
+  },
+  "candidate": {
+    "runId": "RUN-24c6f302-8438-4d9c-8c01-9baebc5497b2",
+    "experimentId": "EXP-6f177070-9f33-4fee-9004-158f0e0adaba",
+    "environmentId": "a3c19e90e30a3f3f8d2f7a655f6d859507782b3ff569c4028bfb3f5791e1fc98",
+    "config": {
+      "mapId": "现有 POI 地图",
+      "poiCount": 2419,
+      "simulationDuration": 0,
+      "vehicleCount": 10,
+      "orderGenerationInterval": 120,
+      "randomSeed": 222,
+      "algorithm": "OPTIMIZED",
+      "events": {
+        "TRAFFIC_JAM": false,
+        "SHORTAGE": false,
+        "CARGO_DAMAGE": false,
+        "WEATHER": false,
+        "VEHICLE_FAULT": false
+      },
+      "orderCount": 12
+    },
+    "modelId": "ad645f0aa463770665294c87c6c2d09c0acc3fadb27bf56b449b7dd7212b50c8",
+    "completionPolicy": "ALL_ORDERS",
+    "orderCount": 12,
+    "completedOrderCount": 12,
+    "source": "BACKEND",
+    "status": "COMPLETED",
+    "progress": 100,
+    "startedAt": 1791810932083,
+    "metrics": {
+      "totalWaitTime": 3240,
+      "totalCarbonEmission": 31697.53,
+      "totalEmptyDistance": 19538.29,
+      "vehicleUtilization": 58.94,
+      "completedTonnage": 182.4,
+      "totalCompletionTimeH": 97.65,
+      "averageOrderCompletionTimeH": 42.56
+    },
+    "events": [],
+    "simulationTime": "2026-01-05T01:39",
+    "taskCount": 18,
+    "completedTaskCount": 18,
+    "pendingOrderCount": 0,
+    "routeModel": "球面距离×1.25；同一POI快照、相同计价与速度模型",
+    "carbonModel": "按车辆油耗×里程×2.68 kg CO₂/L计算，属于排放估算",
+    "finishedAt": 1791810932112
+  },
+  "ui": {
+    "baseline": {
+      "runId": "RUN-80a45e4a-2a97-4711-9477-ff41c8166c66",
+      "summary": "订单完成 12/12 · 总完成时长 97.6 h · 平均订单时长 43.3 h",
+      "chartCount": 7,
+      "identity": "EXP-637b8c90-d45c-4b0e-aa55-b5b0aacca507 / RUN-80a45e4a-2a97-4711-9477-ff41c8166c66"
+    },
+    "candidate": {
+      "runId": "RUN-24c6f302-8438-4d9c-8c01-9baebc5497b2",
+      "baselineId": "RUN-80a45e4a-2a97-4711-9477-ff41c8166c66",
+      "summary": "订单完成 12/12 · 总完成时长 97.7 h · 平均订单时长 42.6 h",
+      "note": "控制条件一致：两次运行使用相同场景、种子、模型和计价口径。",
+      "table": "总体等待时间 / min3,2403,240持平 0%空载里程 / km23,925.219,538.3改善 18.3%车辆利用率 / %55.258.9改善 6.9%运输达成吨位 / t182.4182.4持平 0%总碳排放 / kg CO₂35,618.831,697.5改善 11%全部订单完成时长 / h97.697.7退化 0.1%平均订单完成时长 / h43.342.6改善 1.7%"
+    }
+  },
+  "errors": []
+}
