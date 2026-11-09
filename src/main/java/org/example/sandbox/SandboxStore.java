@@ -7,6 +7,7 @@ import org.example.service.DaoAdapter;
 import org.example.util.Geo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
@@ -37,6 +38,10 @@ public class SandboxStore {
                 lease_until TIMESTAMP NOT NULL, document LONGTEXT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 INDEX experiment_history (experiment_id, created_at), INDEX active_lease (status, lease_until))
+            """);
+        jdbc.execute("""
+            CREATE TABLE IF NOT EXISTS sandbox_playback (
+                run_id VARCHAR(64) PRIMARY KEY, document LONGTEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)
             """);
     }
     public String json(Object value) { try { return mapper.writeValueAsString(value); } catch(Exception e) { throw new IllegalStateException("实验数据序列化失败", e); } }
@@ -85,6 +90,22 @@ public class SandboxStore {
             e.put("config", parse(rs.getString("config"))); e.put("environmentId", rs.getString("environment_id")); e.put("version", rs.getLong("version")); return e;
         });
     }
+    @Transactional
+    public Map<String,Object> delete(String id, long version) {
+        long currentVersion = lockExperiment(id);
+        if (version != currentVersion) throw new IllegalStateException("方案已被其他页面修改，请刷新后确认再删除");
+        Integer active = jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_run WHERE experiment_id=? AND status IN ('QUEUED','RUNNING')", Integer.class, id);
+        if (active != null && active > 0) throw new IllegalStateException("方案存在排队或运行中的实验，请等待结束后再删除");
+        jdbc.update("DELETE p FROM sandbox_playback p INNER JOIN sandbox_run r ON p.run_id=r.run_id WHERE r.experiment_id=?", id);
+        int deletedRuns = jdbc.update("DELETE FROM sandbox_run WHERE experiment_id=?", id);
+        jdbc.update("DELETE FROM sandbox_experiment WHERE experiment_id=?", id);
+        return Map.of("experimentId",id,"deletedRunCount",deletedRuns);
+    }
+    private long lockExperiment(String id) {
+        List<Long> versions = jdbc.query("SELECT version FROM sandbox_experiment WHERE experiment_id=? FOR UPDATE", (rs,n) -> rs.getLong(1), id);
+        if (versions.isEmpty()) throw new IllegalArgumentException("实验方案不存在，可能已被删除，请刷新后重试");
+        return versions.get(0);
+    }
     public void shutdownOwner(String owner) {
         jdbc.update("UPDATE sandbox_run SET status='FAILED',document=JSON_SET(document,'$.status','FAILED','$.error','服务重启，请创建新的Run重新执行') WHERE owner_id=? AND status IN ('QUEUED','RUNNING')", owner);
     }
@@ -99,13 +120,27 @@ public class SandboxStore {
         List<String> rows = jdbc.query("SELECT run_id FROM sandbox_run WHERE request_key=?", (rs,n) -> rs.getString(1), requestKey);
         return rows.isEmpty() ? null : rows.get(0);
     }
+    @Transactional
     public void insertRun(Map<String,Object> run, String request, String owner) {
+        // 与删除操作锁定同一方案，避免并发提交留下孤立的运行记录。
+        lockExperiment((String)run.get("experimentId"));
         jdbc.update("INSERT INTO sandbox_run(run_id,experiment_id,environment_id,request_key,status,owner_id,lease_until,document) VALUES (?,?,?,?,?,?,DATE_ADD(NOW(),INTERVAL 30 MINUTE),?)",
             run.get("runId"), run.get("experimentId"), run.get("environmentId"), request, "QUEUED", owner, json(run));
     }
     public boolean updateRun(Map<String,Object> run, String owner) {
         return jdbc.update("UPDATE sandbox_run SET status=?,document=?,lease_until=DATE_ADD(NOW(),INTERVAL 4 MINUTE) WHERE run_id=? AND owner_id=? AND status IN ('QUEUED','RUNNING')",
                 run.get("status"), json(run), run.get("runId"), owner) == 1;
+    }
+    @Transactional
+    public boolean finishRun(Map<String,Object> run, String owner, SandboxPlayback playback) {
+        if (!updateRun(run,owner)) return false;
+        jdbc.update("INSERT INTO sandbox_playback(run_id,document) VALUES (?,?)",run.get("runId"),json(playback));
+        return true;
+    }
+    public Map<String,Object> playback(String runId) {
+        List<String> rows = jdbc.query("SELECT document FROM sandbox_playback WHERE run_id=?",(rs,n) -> rs.getString(1),runId);
+        if (rows.isEmpty()) throw new IllegalStateException("这次运行未保存回放轨迹，请在沙箱中重跑选中记录以生成回放");
+        return parse(rows.get(0));
     }
     public void expireLeases() {
         // MySQL JSON_SET preserves the immutable configuration even after a process crash.

@@ -1,4 +1,5 @@
 .sandbox-body #algorithm.weighted-active{max-height:none;overflow:visible}
+.sandbox-actions #delete-experiment{background:#fff5f5;border:1px solid #efcccc;color:#b83d3d}
 #objective-settings{margin:18px 0;padding:14px 16px;border:1px solid #dce6f3;border-radius:10px;background:#f9fbff;min-width:0}
 #objective-settings legend{padding:0 7px;font-size:12px;font-weight:600;color:#315579}
 #objective-settings .field{margin:12px 0;grid-template-columns:minmax(130px,1fr) minmax(80px,1fr)}

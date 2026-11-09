@@ -20,6 +20,8 @@ let routePreviewing = false;
 let animatingMarkers = new Map(); // vehicleId → count（引用计数，防并发动画）
 
 window.onload = function () {
+    if (window.liveMonitorInitialized) return;
+    window.liveMonitorInitialized = true;
     // 1. 地图立即创建，不依赖任何后端
     try {
         map = new AMap.Map("map", {

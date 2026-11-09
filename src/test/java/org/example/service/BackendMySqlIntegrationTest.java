@@ -60,7 +60,7 @@ class BackendMySqlIntegrationTest {
                 dispatch.runCycleRound(scheduler.currentTime().plusSeconds(2),"BASELINE");
                 Path done=Path.of("target","ui-smoke-"+UUID.randomUUID()+".done").toAbsolutePath();
                 Files.writeString(Path.of("target","ui-smoke-ready.json"),mapper.writeValueAsString(Map.of("port",httpPort,"schema",schema,"doneFile",done.toString(),"processId",ProcessHandle.current().pid())));
-                long deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(180);
+                long deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(Long.parseLong(System.getenv().getOrDefault("UI_SMOKE_TIMEOUT_SECONDS","180")));
                 try {while(!Files.exists(done)&&System.nanoTime()<deadline)Thread.sleep(100);assertTrue(Files.exists(done),"浏览器验收等待超时");}
                 finally{Files.deleteIfExists(done);Files.deleteIfExists(Path.of("target","ui-smoke-ready.json"));}
             }
@@ -137,9 +137,98 @@ class BackendMySqlIntegrationTest {
         String legacyId="RUN-"+UUID.randomUUID();
         var legacy=new LinkedHashMap<>(first);legacy.put("runId",legacyId);
         legacy.put("config",new ExperimentConfig("map",20,24,50,10,20260922L,"BASELINE",Map.of()));
-        legacy.put("modelId",dispatch.modelId());legacy.remove("completionPolicy");
+        legacy.put("modelId",dispatch.modelId());legacy.remove("completionPolicy");legacy.remove("playbackAvailable");
         store.insertRun(legacy,UUID.randomUUID().toString(),"legacy-test");
         assertThrows(IllegalStateException.class,()->sandbox.start(id,UUID.randomUUID().toString(),legacyId));
+    }
+    @Test void deletingEmptyExperimentKeepsItsCopyAndSharedEnvironment() throws Exception {
+        var original=sandbox.create("删除空方案",ExperimentConfig.defaults(20),null);
+        String id=(String)original.get("experimentId");
+        var copy=sandbox.create("保留副本",ExperimentConfig.defaults(20),id);
+        assertEquals(200,mvc.perform(delete("/sandbox/experiments/"+id).contentType("application/json")
+                .content(mapper.writeValueAsString(Map.of("version",original.get("version"))))).andReturn().getResponse().getStatus());
+        assertThrows(IllegalArgumentException.class,()->store.experiment(id));
+        assertEquals(copy.get("name"),store.experiment((String)copy.get("experimentId")).get("name"));
+        assertFalse(store.environment((String)copy.get("environmentId")).isEmpty());
+        assertEquals(400,mvc.perform(delete("/sandbox/experiments/"+id).contentType("application/json")
+                .content("{\"version\":1}")).andReturn().getResponse().getStatus());
+    }
+    @Test void deletingFinishedExperimentRemovesAllItsHistoryOnly() throws Exception {
+        var config=new ExperimentConfig("map",20,0,2,1,123L,"BASELINE",Map.of(),4);
+        var experiment=sandbox.create("删除历史方案",config,null);
+        String id=(String)experiment.get("experimentId");
+        var completed=await((String)sandbox.start(id,UUID.randomUUID().toString(),null).get("runId"));
+        assertEquals("COMPLETED",completed.get("status"));
+        var failed=new LinkedHashMap<>(completed); failed.put("runId","RUN-"+UUID.randomUUID()); failed.put("status","FAILED");
+        store.insertRun(failed,UUID.randomUUID().toString(),"delete-test");
+        assertTrue(store.updateRun(failed,"delete-test"));
+        var other=sandbox.create("其他方案",config,id);
+        var otherRun=new LinkedHashMap<>(completed); otherRun.put("runId","RUN-"+UUID.randomUUID()); otherRun.put("experimentId",other.get("experimentId"));otherRun.remove("playbackAvailable");
+        store.insertRun(otherRun,UUID.randomUUID().toString(),"delete-test");
+        assertTrue(store.updateRun(otherRun,"delete-test"));
+        assertEquals(2,sandbox.delete(id,1).get("deletedRunCount"));
+        assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_run WHERE experiment_id=?",Integer.class,id));
+        assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_playback WHERE run_id=?",Integer.class,completed.get("runId")));
+        assertThrows(IllegalArgumentException.class,()->store.run((String)completed.get("runId")));
+        assertEquals(otherRun.get("runId"),store.run((String)otherRun.get("runId")).get("runId"));
+    }
+    @Test void playbackIsPersistedAndServedWithoutChangingLiveScene() throws Exception {
+        var beforeVehicles=jdbc.queryForList("SELECT * FROM vehicle ORDER BY id");
+        var beforeOrders=jdbc.queryForList("SELECT * FROM transport_order ORDER BY id");
+        var config=new ExperimentConfig("map",20,0,3,1,321L,"WEIGHTED",Map.of("WEATHER",true),12,ObjectiveWeights.defaults());
+        var experiment=sandbox.create("回放持久化验证",config,null);
+        var run=await((String)sandbox.start((String)experiment.get("experimentId"),UUID.randomUUID().toString(),null).get("runId"));
+        assertEquals("COMPLETED",run.get("status"));assertEquals(true,run.get("playbackAvailable"));
+        var playback=store.playback((String)run.get("runId"));
+        assertEquals(run.get("taskCount"),((List<?>)playback.get("tasks")).size());
+        assertEquals(3,((List<?>)playback.get("vehicles")).size());assertEquals(12,((List<?>)playback.get("orders")).size());
+        var response=mvc.perform(get("/sandbox/runs/"+run.get("runId")+"/playback")).andReturn().getResponse();
+        assertEquals(200,response.getStatus());
+        var body=mapper.readValue(response.getContentAsString(java.nio.charset.StandardCharsets.UTF_8),Map.class);
+        assertEquals(playback,body.get("playback"));assertNotNull(body.get("pois"));
+        assertEquals(beforeVehicles,jdbc.queryForList("SELECT * FROM vehicle ORDER BY id"));
+        assertEquals(beforeOrders,jdbc.queryForList("SELECT * FROM transport_order ORDER BY id"));
+        var legacy=new LinkedHashMap<>(run);legacy.put("runId","RUN-"+UUID.randomUUID());legacy.remove("playbackAvailable");
+        store.insertRun(legacy,UUID.randomUUID().toString(),"legacy-playback");store.updateRun(legacy,"legacy-playback");
+        assertEquals(409,mvc.perform(get("/sandbox/runs/"+legacy.get("runId")+"/playback")).andReturn().getResponse().getStatus());
+        assertEquals(0,jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_playback WHERE run_id=?",Integer.class,legacy.get("runId")));
+    }
+    @Test void deletionRejectsStaleVersionAndActiveRunsWithoutRemovingAnything() throws Exception {
+        var experiment=sandbox.create("保护方案",ExperimentConfig.defaults(20),null);
+        String id=(String)experiment.get("experimentId");
+        sandbox.update(id,"其他页面已修改",ExperimentConfig.defaults(20),1);
+        assertEquals(409,mvc.perform(delete("/sandbox/experiments/"+id).contentType("application/json")
+                .content("{\"version\":1}")).andReturn().getResponse().getStatus());
+        for(String status:List.of("QUEUED","RUNNING")) {
+            String runId="RUN-"+UUID.randomUUID();
+            var run=Map.<String,Object>of("runId",runId,"experimentId",id,"environmentId",experiment.get("environmentId"),"status",status,
+                    "config",ExperimentConfig.defaults(20),"events",List.of(),"startedAt",System.currentTimeMillis());
+            store.insertRun(run,UUID.randomUUID().toString(),"delete-test");
+            assertTrue(store.updateRun(run,"delete-test"));
+            var response=mvc.perform(delete("/sandbox/experiments/"+id).contentType("application/json").content("{\"version\":2}")).andReturn().getResponse();
+            assertEquals(409,response.getStatus()); assertTrue(response.getContentAsString(java.nio.charset.StandardCharsets.UTF_8).contains("排队或运行中"));
+            assertEquals(status,store.run(runId).get("status")); assertNotNull(store.experiment(id));
+            jdbc.update("UPDATE sandbox_run SET status='FAILED' WHERE run_id=?",runId);
+        }
+        assertEquals(2,sandbox.delete(id,2).get("deletedRunCount"));
+    }
+    @Test void concurrentDeletionAndRunSubmissionCannotCreateOrphanedHistory() throws Exception {
+        ExecutorService executor=Executors.newFixedThreadPool(2);
+        try {
+            for(int attempt=0;attempt<6;attempt++) {
+                var experiment=sandbox.create("并发删除验证",ExperimentConfig.defaults(20),null);
+                String id=(String)experiment.get("experimentId"),runId="RUN-"+UUID.randomUUID();
+                var run=Map.<String,Object>of("runId",runId,"experimentId",id,"environmentId",experiment.get("environmentId"),"status","QUEUED",
+                        "config",ExperimentConfig.defaults(20),"events",List.of(),"startedAt",System.currentTimeMillis());
+                CountDownLatch start=new CountDownLatch(1);
+                Future<Boolean> inserted=executor.submit(()->{start.await();try{store.insertRun(run,UUID.randomUUID().toString(),"delete-test");return true;}catch(IllegalArgumentException expected){return false;}});
+                Future<Boolean> deleted=executor.submit(()->{start.await();try{sandbox.delete(id,1);return true;}catch(IllegalStateException expected){return false;}});
+                start.countDown(); boolean hasRun=inserted.get(10,TimeUnit.SECONDS),removed=deleted.get(10,TimeUnit.SECONDS);
+                assertNotEquals(hasRun,removed);
+                assertEquals(hasRun?1:0,jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_run WHERE experiment_id=?",Integer.class,id));
+                assertEquals(hasRun?1:0,jdbc.queryForObject("SELECT COUNT(*) FROM sandbox_experiment WHERE experiment_id=?",Integer.class,id));
+            }
+        } finally {executor.shutdownNow();}
     }
     @Test void weightedRunFreezesPreferencesPersistsAuditAndReplaysExactly() throws Exception {
         var weights=new ObjectiveWeights(25,25,20,15,15);

@@ -10,6 +10,7 @@ public class SandboxController {
     public SandboxController(SandboxService service) { this.service = service; }
     public record ExperimentRequest(String name, ExperimentConfig config, String copyFrom, long version) {}
     public record RunRequest(String requestKey, String rerunOf) {}
+    public record DeleteRequest(long version) {}
     @GetMapping("/catalog") public Object catalog() { return service.catalog(); }
     @GetMapping("/state") public Object state() { return service.state(); }
     @PostMapping("/experiments") public Object create(@RequestBody ExperimentRequest request) {
@@ -21,5 +22,9 @@ public class SandboxController {
         return service.update(id,request.name(),request.config(),request.version());
     }
     @PostMapping("/experiments/{id}/runs") public Object start(@PathVariable String id, @RequestBody RunRequest request) { return service.start(id,request.requestKey(),request.rerunOf()); }
+    @DeleteMapping("/experiments/{id}") public Object delete(@PathVariable String id, @RequestBody DeleteRequest request) {
+        return service.delete(id,request.version());
+    }
     @GetMapping("/runs/{id}") public Object run(@PathVariable String id) { return service.run(id); }
+    @GetMapping("/runs/{id}/playback") public Object playback(@PathVariable String id) { return service.playback(id); }
 }

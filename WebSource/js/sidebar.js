@@ -13,7 +13,6 @@
         { name: "路径规划", href: `${toHtml}route.html`, file: "route.html" },
         { name: "小车模拟", href: `${toHtml}runCar.html`, file: "runCar.html" },
         { name: "数据实验沙箱", href: `${toHtml}sandbox.html`, file: "sandbox.html" },
-        { name: "中期汇报 / 图表讲解", href: `${toHtml}midterm.html`, file: "midterm.html" },
         { name: "实时监控 / 循环仿真", href: `${toHtml}cycle.html`, file: "cycle.html" },
         { name: "最大利润算法", href: `${toHtml}max-profit-demo.html`, file: "max-profit-demo.html" },
         { name: "一车多货算法", href: `${toHtml}multi-cargo-demo.html`, file: "multi-cargo-demo.html" },

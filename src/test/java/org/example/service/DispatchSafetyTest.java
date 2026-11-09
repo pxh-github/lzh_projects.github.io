@@ -136,7 +136,7 @@ class DispatchSafetyTest {
         for(int i=0;i<3;i++) {
             DispatchTask task=new DispatchTask();task.setVehicleId(1L);task.setOrderId(i<2?1L:2L);task.setStatus("DONE");
             task.setSimulationStartedAt(start);task.setSimulationFinishedAt(start.plusHours(i==0?5:i==1?10:3));
-            task.setAssignedWeight(BigDecimal.ONE);task.setVehicleWaitTimeH(BigDecimal.ZERO);task.setCargoWaitTimeH(BigDecimal.ZERO);task.setPickupDistanceKm(BigDecimal.ONE);task.setTransportDistanceKm(BigDecimal.ONE);tasks.add(task);
+            task.setAssignedWeight(BigDecimal.ONE);task.setPickupTimeH(BigDecimal.ZERO);task.setVehicleWaitTimeH(BigDecimal.ZERO);task.setCargoWaitTimeH(BigDecimal.ZERO);task.setPickupDistanceKm(BigDecimal.ONE);task.setTransportDistanceKm(BigDecimal.ONE);tasks.add(task);
         }
         DispatchService planner=mock(DispatchService.class);
         when(planner.simulateSnapshot(anyList(),anyList(),anyString(),any(),any(),any())).thenReturn(new DispatchService.SimulationSnapshot("BASELINE",start.plusHours(10),List.of(vehicle()),List.of(first,second),tasks));

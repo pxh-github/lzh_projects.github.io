@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "外部浏览器：实时监控",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:9091/html/cycle.html",
+            "webRoot": "${workspaceFolder}/WebSource"
+        },
+        {
+            "name": "外部浏览器：数据沙箱",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:9091/html/sandbox.html",
+            "webRoot": "${workspaceFolder}/WebSource"
+        }
+    ]
+}

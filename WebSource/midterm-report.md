@@ -81,4 +81,4 @@ Optimized：RUN-41668d60-68dd-40c1-a28b-44fdde5ce802。
 
 当前道路距离采用球面距离乘修正系数，交通、天气、故障、缺货和货损采用简化模型；碳排放为油耗模型估算，车辆位置不是实测GPS轨迹。下一阶段应校准道路、成本和事件参数，并扩展同条件、多种子实验；在保留原始Run证据的基础上补充长期运行、内存与数据库容量测试及历史归档策略。
 
-演示入口：http://localhost:9091/html/midterm.html。实时监控：http://localhost:9091/html/cycle.html。实验沙箱：http://localhost:9091/html/sandbox.html。
+演示入口：实时监控 http://localhost:9091/html/cycle.html，实验沙箱 http://localhost:9091/html/sandbox.html。

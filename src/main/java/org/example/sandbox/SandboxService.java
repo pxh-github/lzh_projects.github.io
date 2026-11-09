@@ -27,7 +27,13 @@ public class SandboxService {
         return store.create(name, config, environment);
     }
     public Map<String,Object> update(String id, String name, ExperimentConfig config, long version) { return store.update(id,name,config,version); }
+    public Map<String,Object> delete(String id, long version) { return store.delete(id,version); }
     public Map<String,Object> run(String id) { return store.run(id); }
+    public Map<String,Object> playback(String id) {
+        Map<String,Object> run = store.run(id);
+        if (!"COMPLETED".equals(run.get("status"))) throw new IllegalStateException("请等待实验完成后再播放");
+        return Map.of("run",run,"playback",store.playback(id),"pois",store.environment((String)run.get("environmentId")));
+    }
     public Map<String,Object> start(String experimentId, String requestKey, String rerunId) {
         if (closing) throw new IllegalStateException("服务正在停止");
         if (requestKey == null || !requestKey.matches("[A-Za-z0-9-]{8,64}")) throw new IllegalArgumentException("缺少有效请求标识");
@@ -51,6 +57,7 @@ public class SandboxService {
         run.put("completionPolicy",runConfig.completeAll()?"ALL_ORDERS":"LEGACY_24H");
         run.put("orderCount",runConfig.demandCount());run.put("completedOrderCount",0);
         run.put("source", "BACKEND"); run.put("status", "QUEUED"); run.put("progress", 0); run.put("startedAt", System.currentTimeMillis());
+        run.put("playbackAvailable",false);
         run.put("metrics", null); run.put("events", List.of()); run.put("simulationTime", "2026-01-01T00:00");
         if (rerunId != null) run.put("rerunOf", rerunId);
         try { store.insertRun(run, requestKey, owner); }
@@ -92,9 +99,13 @@ public class SandboxService {
             run.put("simulationTime", result.simulationTime()); run.put("routeModel", result.routeModel()); run.put("carbonModel", result.carbonModel());
             run.put("optimization", result.optimization());
             run.put("status", "COMPLETED"); run.put("progress", 100); run.put("finishedAt", System.currentTimeMillis());
+            run.put("playbackAvailable",true);
+            store.finishRun(run,owner,result.playback());
+            return;
         } catch (Exception e) {
             org.slf4j.LoggerFactory.getLogger(SandboxService.class).warn("Experiment {} failed", id, e);
             run.put("status", "FAILED"); run.put("error", e instanceof IllegalArgumentException || e instanceof IllegalStateException ? e.getMessage() : "实验执行失败，请检查服务日志");
+            run.put("playbackAvailable",false);
             run.put("finishedAt", System.currentTimeMillis());
         }
         store.updateRun(run, owner);

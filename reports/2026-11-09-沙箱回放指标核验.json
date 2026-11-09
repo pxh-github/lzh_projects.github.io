@@ -1,0 +1,62 @@
+{
+  "scope": "独立临时MySQL测试场景",
+  "runId": "RUN-3aa859d8-3037-49a9-b2ca-041b78f541fe",
+  "completedOrders": 20,
+  "completedTasks": 51,
+  "checks": [
+    {
+      "metric": "totalCarbonEmission",
+      "expected": 3.2,
+      "actual": 3.2,
+      "passed": true
+    },
+    {
+      "metric": "totalEmptyDistance",
+      "expected": 1.98,
+      "actual": 1.98,
+      "passed": true
+    },
+    {
+      "metric": "totalWaitTime",
+      "expected": 45.19,
+      "actual": 45.19,
+      "passed": true
+    },
+    {
+      "metric": "vehicleUtilization",
+      "expected": 70.88,
+      "actual": 70.88,
+      "passed": true
+    },
+    {
+      "metric": "completedTonnage",
+      "expected": 257.9,
+      "actual": 257.9,
+      "passed": true
+    },
+    {
+      "metric": "capacityDistanceUtilization",
+      "expected": 41.27,
+      "actual": 41.27,
+      "passed": true
+    },
+    {
+      "metric": "cargoWaitingTonMinutes",
+      "expected": 1096.08,
+      "actual": 1096.08,
+      "passed": true
+    },
+    {
+      "metric": "totalCompletionTimeH",
+      "expected": 0.38,
+      "actual": 0.38,
+      "passed": true
+    },
+    {
+      "metric": "averageOrderCompletionTimeH",
+      "expected": 0.17,
+      "actual": 0.17,
+      "passed": true
+    }
+  ]
+}

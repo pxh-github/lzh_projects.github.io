@@ -22,7 +22,7 @@ public class SandboxEngine {
     public record Progress(int progress, String simulationTime, int taskCount, int completedOrderCount, int orderCount) {}
     public record Result(Map<String, BigDecimal> metrics, List<Event> events, int taskCount, int completedTaskCount,
             int pendingOrderCount, String simulationTime, String routeModel, String carbonModel, int orderCount, int completedOrderCount,
-            Map<String, Object> optimization) {}
+            Map<String, Object> optimization, SandboxPlayback playback) {}
     public Result execute(ExperimentConfig config, List<LocationPoint> locations, Consumer<Progress> progress) {
         if (locations.size() < 2) throw new IllegalArgumentException("实验至少需要两个有效POI");
         Random random = new Random(config.randomSeed());
@@ -93,7 +93,8 @@ public class SandboxEngine {
                     "objectiveKeys", WeightedObjective.KEYS, "weights", config.objectiveWeights(),
                     "normalizedWeights", Arrays.stream(config.objectiveWeights().normalized()).boxed().toList(),
                     "normalization", "MIN_MAX_PER_DECISION", "decisionCount", decisionCount[0], "candidateCount", candidateCount[0],
-                    "decisionSamples", decisions, "samplesTruncated", decisionCount[0] > decisions.size()) : Map.of());
+                    "decisionSamples", decisions, "samplesTruncated", decisionCount[0] > decisions.size()) : Map.of(),
+                SandboxPlayback.capture(start,snapshot.getSimTime(),fleet,snapshot.getOrders(),snapshot.getTasks(),events));
     }
     private static BigDecimal hours(LocalDateTime start, LocalDateTime finish) { return BigDecimal.valueOf(Duration.between(start,finish).toMinutes()).divide(BigDecimal.valueOf(60),2,RoundingMode.HALF_UP); }
     private List<Event> events(ExperimentConfig config, LocalDateTime start, List<OrderEntity> orders) {
@@ -123,9 +124,7 @@ public class SandboxEngine {
             if (!"DONE".equals(task.getStatus())) continue;
             wait = wait.add(task.getVehicleWaitTimeH().multiply(BigDecimal.valueOf(60)));
             empty = empty.add(task.getPickupDistanceKm()); loaded = loaded.add(task.getTransportDistanceKm());
-            boolean damaged = events.stream().anyMatch(e -> "CARGO_DAMAGE".equals(e.eventType()) && e.affectedOrderIds().contains(task.getOrderId())
-                    && !task.getSimulationFinishedAt().isBefore(e.startTime()) && task.getSimulationStartedAt().isBefore(e.startTime().plusMinutes(e.duration())));
-            tonnage = tonnage.add(task.getAssignedWeight().multiply(damaged ? new BigDecimal("0.90") : BigDecimal.ONE));
+            tonnage = tonnage.add(task.getAssignedWeight().multiply(damaged(task,events) ? new BigDecimal("0.90") : BigDecimal.ONE));
             Vehicle v = fleet.get(task.getVehicleId());
             cargoWait = cargoWait.add(task.getCargoWaitTimeH().multiply(BigDecimal.valueOf(60)).multiply(task.getAssignedWeight()));
             tonKm = tonKm.add(task.getAssignedWeight().multiply(task.getTransportDistanceKm()));
@@ -138,5 +137,9 @@ public class SandboxEngine {
         return Map.of("totalWaitTime", wait.setScale(2, RoundingMode.HALF_UP), "totalEmptyDistance", empty.setScale(2, RoundingMode.HALF_UP),
                 "vehicleUtilization", utilization, "completedTonnage", tonnage.setScale(2, RoundingMode.HALF_UP), "totalCarbonEmission", carbon.setScale(2, RoundingMode.HALF_UP),
                 "cargoWaitingTonMinutes", cargoWait.setScale(2, RoundingMode.HALF_UP), "capacityDistanceUtilization", loadUtilization);
+    }
+    static boolean damaged(DispatchTask task, List<Event> events) {
+        return events.stream().anyMatch(e -> "CARGO_DAMAGE".equals(e.eventType()) && e.affectedOrderIds().contains(task.getOrderId())
+                && !task.getSimulationFinishedAt().isBefore(e.startTime()) && task.getSimulationStartedAt().isBefore(e.startTime().plusMinutes(e.duration())));
     }
 }

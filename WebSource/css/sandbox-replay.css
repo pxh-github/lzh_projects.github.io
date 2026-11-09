@@ -1,0 +1,18 @@
+.monitor-mode-label{display:flex;align-items:center;gap:8px;font-size:12px;color:#647b98}
+#monitor-mode,.replay-field select{background:white;border:1px solid #dce6f3;border-radius:8px;padding:8px;color:#27486d;max-width:100%}
+.replay-mode #live-control-actions,.replay-mode .danger-zone,.replay-mode #preview-route-btn,.replay-mode #preview-route-btn+p,.replay-mode #open-live-event,.replay-mode .events-panel .panel-foot{display:none}
+.replay-mode #replay-controls{display:block}
+.replay-field{display:grid;gap:8px;font-size:12px;color:#647b98;margin:14px 0}
+.replay-field select,.replay-field input{width:100%;min-width:0}
+#replay-config,#replay-weights,#replay-message{overflow-wrap:anywhere;line-height:1.9;font-size:11px}
+#replay-message{padding:10px;background:#edf4ff;border-radius:8px;color:#315579}
+#replay-seek{accent-color:#2563eb}
+#replay-time{font-variant-numeric:tabular-nums;font-size:11px}
+#replay-final-results .detail-row{font-size:10px;padding:7px 0}
+.replay-mode #runtime-status{min-height:38px;height:auto;line-height:1.7}
+.replay-mode .live-events{max-height:160px;overflow:auto}
+.replay-mode .event-row{font-size:11px;padding:7px 0}
+.replay-mode .event-row small{display:block;color:#78879a;line-height:1.6}
+.replay-mode #car-list .car-item{width:100%;text-align:left;color:#27486d;font:inherit;font-size:11px}
+@media(max-width:1000px){.replay-mode .monitor-layout{height:auto;min-height:calc(100vh - 90px)}.replay-mode .page-header{height:auto;min-height:90px}.monitor-mode-label{font-size:11px}.replay-mode #control-panel{max-height:none}}
+@media(max-width:760px){.page-header nav{flex-wrap:wrap}.monitor-mode-label{width:100%}.replay-mode .map-shell{height:400px}.replay-mode .lower-panels{grid-template-columns:1fr}.replay-mode .map-caption{max-width:calc(100% - 28px)}}

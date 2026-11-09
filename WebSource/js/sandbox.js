@@ -28,7 +28,14 @@
         finally { acting = false; updateStatus(); }
     }
     function fill() {
-        const e = experiment(); if (!e) return; const c = e.config;
+        const e = experiment();
+        if (!e) {
+            formVersion = undefined;
+            ['experiment-name','vehicle-count-input','order-count-input','order-interval','seed'].forEach(id => { $(id).value = ''; });
+            $('poi-count').textContent = '请选择或新建实验';
+            return;
+        }
+        const c = e.config;
         formVersion = e.version;
         $('experiment-name').value = e.name; $('vehicle-count-input').value = c.vehicleCount;
         $('order-interval').value = c.orderGenerationInterval; $('seed').value = c.randomSeed; $('algorithm-select').value = c.algorithm;
@@ -54,6 +61,10 @@
     }
     function renderList() {
         $('experiments').replaceChildren();
+        if (!data.experiments.length) {
+            const empty = document.createElement('p'); empty.className = 'muted'; empty.textContent = '暂无实验方案，请点击“新建实验”。';
+            $('experiments').append(empty);
+        }
         data.experiments.forEach(e => {
             const button = document.createElement('button'); button.className = 'experiment' + (e.experimentId === selected ? ' active' : '');
             button.textContent = `${e.name} · ${data.runs.filter(r => r.experimentId === e.experimentId).length} Runs`;
@@ -94,13 +105,33 @@
         const run = data.runs.find(r => r.runId === selectedRun);
         $('start-run').disabled = acting || !experiment(); $('rerun').disabled = acting || !run || run.config.simulationDuration !== 0 || !['COMPLETED','FAILED'].includes(run.status);
         $('rerun').title = run && run.config.simulationDuration !== 0 ? '历史24小时口径；请点击开始实验生成全订单完成结果' : '按选中记录的冻结参数复现';
-        ['new-experiment','copy-experiment','save-config'].forEach(id => { $(id).disabled = acting; });
+        $('new-experiment').disabled = acting;
+        ['copy-experiment','save-config'].forEach(id => { $(id).disabled = acting || !experiment(); });
+        const activeRuns = data.runs.some(r => r.experimentId === selected && ['QUEUED','RUNNING'].includes(r.status));
+        $('delete-experiment').disabled = acting || !experiment() || activeRuns;
+        $('delete-experiment').title = activeRuns ? '请等待排队或运行中的实验结束后再删除' : '删除当前方案及其全部运行历史和结果';
+        $('config-form').hidden = !experiment(); $('experiment-name').disabled = acting || !experiment();
         $('run-baseline').disabled = acting || !run || !['COMPLETED','FAILED'].includes(run.status) || run.config.simulationDuration !== 0 || run.config.algorithm === 'BASELINE';
+        $('play-run').disabled = acting || !run || run.status !== 'COMPLETED' || !run.playbackAvailable;
+        $('run-playback-hint').textContent = !run ? '' : run.status === 'COMPLETED'
+            ? run.playbackAvailable ? '已保存本次实验轨迹，可点击“播放本次实验”查看对应车辆动画。' : '此历史记录没有保存轨迹；点击“重跑选中记录”，完成后可播放新运行的动画。'
+            : '实验完成后可播放本次运行的车辆动画。';
         $('run-state').textContent = run ? `${labels[run.status]} · 后端真实执行${run.error ? '：' + run.error : ''}` : '尚未运行';
         $('run-identity').textContent = run ? `${run.experimentId} / ${run.runId}` : '';
         $('run-progress').value = run?.progress || 0; $('run-percent').textContent = `${run?.progress || 0}%`;
         $('run-time').textContent = run ? `仿真时间 ${run.simulationTime} · seed ${run.config.randomSeed} · 完成任务 ${run.completedTaskCount ?? '—'}/${run.taskCount ?? 0}` : '';
         $('completion-summary').textContent = !run ? '按订单完成比例显示进度；100%表示全部订单运输完成。' : run.config.simulationDuration !== 0 ? '历史运行：24小时截止口径；重新开始实验将运行至全部订单完成。' : `订单完成 ${run.completedOrderCount ?? 0}/${run.orderCount ?? run.config.orderCount} · 总完成时长 ${Metrics.format(run.metrics?.totalCompletionTimeH)} h · 平均订单时长 ${Metrics.format(run.metrics?.averageOrderCompletionTimeH)} h`;
+        $('run-event-settings').hidden = !run;
+        $('run-event-settings').textContent = '';
+        if (run) {
+            const enabledEvents = Object.entries(run.config.events || {}).filter(([,enabled]) => enabled === true)
+                .map(([type]) => catalog.events[type] || type);
+            $('run-event-settings').textContent = run.config.events == null ? '本Run事件配置：未记录'
+                : '本Run启用随机事件：' + (enabledEvents.length ? enabledEvents.join('、') : '无（全部关闭）');
+            $('run-event-settings').textContent += run.status === 'COMPLETED'
+                ? `；实际生成 ${run.events?.length ?? 0} 条，详情见下方“随机事件”。`
+                : '。启用的事件按概率生成，不保证一定发生。';
+        }
         $('run-objectives').textContent = '';
         if (run?.config.algorithm === 'WEIGHTED') {
             const normalized = service.normalizedWeights(run.config.objectiveWeights);
@@ -138,7 +169,10 @@
         const version = ++refreshVersion, next = await service.load();
         if(version !== refreshVersion || stopped) return;
         data = next; data.runs.reverse().sort((a,b) => (Number(a.startedAt) || 0) - (Number(b.startedAt) || 0));
-        if (!selected || !experiment()) selected = data.experiments[0]?.experimentId;
+        if (!selected || !experiment()) {
+            selected = data.experiments[0]?.experimentId; selectedRun = undefined;
+            followLatestRun = true; comparisonFollowing = true; fill();
+        }
         if (followLatestRun || !selectedRun) selectedRun = data.runs.filter(r => r.experimentId === selected).at(-1)?.runId;
         renderList(); renderRuns();
     }
@@ -160,7 +194,23 @@
         selected = e.experimentId; selectedRun = null; comparisonFollowing = true; followLatestRun = true; await refresh(); fill();
     }
     $('new-experiment').onclick = () => act(() => add(false)); $('copy-experiment').onclick = () => act(() => add(true));
+    $('delete-experiment').onclick = () => act(async () => {
+        const target = experiment(); if (!target) return;
+        if (!window.confirm(`确定删除实验方案“${target.name}”？\n该方案的全部运行历史、结果和事件将一并永久删除，无法恢复。`)) return;
+        const index = data.experiments.findIndex(e => e.experimentId === target.experimentId);
+        await service.remove(target.experimentId,formVersion);
+        data.experiments = data.experiments.filter(e => e.experimentId !== target.experimentId);
+        data.runs = data.runs.filter(r => r.experimentId !== target.experimentId);
+        selected = data.experiments[Math.min(index,data.experiments.length-1)]?.experimentId;
+        selectedRun = undefined; followLatestRun = true; comparisonFollowing = true;
+        fill(); renderList(); renderRuns();
+        await refresh(); fill();
+    });
     $('compare-focus').onclick = () => { $('comparison').scrollIntoView({behavior:'smooth'}); $('baseline-run').focus(); };
+    $('play-run').onclick = () => {
+        const run = data.runs.find(r => r.runId === selectedRun);
+        if (!acting && run?.status === 'COMPLETED' && run.playbackAvailable) window.location.href = 'cycle.html?mode=replay&runId=' + encodeURIComponent(run.runId);
+    };
     $('baseline-run').onchange = $('candidate-run').onchange = () => { comparisonFollowing = false; compare(); };
     $('follow-comparison').onclick = () => { comparisonFollowing = true; renderRuns(); };
     $('close-event').onclick = () => $('event-dialog').close();
@@ -198,7 +248,12 @@
             const input = document.createElement('input'); input.type = 'checkbox'; input.dataset.event = type; label.append(span,input); $('event-options').append(label);
         });
         await refresh();
-        if (!data.experiments.length) { const e = await service.create('Baseline',catalog.defaults); selected = e.experimentId; await refresh(); }
+        const requestedRunId = new URLSearchParams(window.location.search).get('runId');
+        const requestedRun = data.runs.find(r => r.runId === requestedRunId);
+        if (requestedRun) {
+            selected = requestedRun.experimentId; selectedRun = requestedRun.runId;
+            followLatestRun = false; comparisonFollowing = true; renderList(); renderRuns();
+        }
         fill();
     } catch(e) { $('sandbox-error').textContent = e.message; updateStatus(); }
     async function poll() {

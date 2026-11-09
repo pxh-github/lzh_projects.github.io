@@ -100,5 +100,16 @@ class WeightedDispatchTest {
         assertTrue(((List<?>)a.optimization().get("decisionSamples")).size()<=20);
         assertTrue(a.metrics().get("cargoWaitingTonMinutes").signum()>=0);
         assertTrue(a.metrics().get("capacityDistanceUtilization").compareTo(new BigDecimal("100"))<=0);
+        assertEquals(a.taskCount(),a.playback().tasks().size());
+        assertEquals(3,a.playback().vehicles().size());assertEquals(30,a.playback().orders().size());
+        Map<Long,String> locations=new HashMap<>();a.playback().vehicles().forEach(v->locations.put(v.id(),v.initialLocation()));
+        BigDecimal tons=BigDecimal.ZERO,carbon=BigDecimal.ZERO;
+        for(var task:a.playback().tasks()) {
+            assertEquals(locations.get(task.vehicleId()),task.origin());locations.put(task.vehicleId(),task.delivery());
+            assertFalse(task.pickupAt().isBefore(task.startedAt()));assertFalse(task.finishedAt().isBefore(task.pickupAt()));
+            tons=tons.add(task.completedTonnage());carbon=carbon.add(task.carbonKg());
+        }
+        assertEquals(0,a.metrics().get("completedTonnage").compareTo(tons.setScale(2,java.math.RoundingMode.HALF_UP)));
+        assertEquals(0,a.metrics().get("totalCarbonEmission").compareTo(carbon.setScale(2,java.math.RoundingMode.HALF_UP)));
     }
 }

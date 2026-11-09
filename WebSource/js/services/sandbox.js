@@ -66,6 +66,7 @@ window.SandboxService = (() => {
         load: () => request('GET','/sandbox/state'),
         create: (name, config, copyFrom) => request('POST','/sandbox/experiments',{name,config,copyFrom}),
         save: experiment => request('PUT','/sandbox/experiments/' + encodeURIComponent(experiment.experimentId), experiment),
+        remove: (experimentId, version) => request('DELETE','/sandbox/experiments/' + encodeURIComponent(experimentId), {version}),
         createRun,
         run: runId => request('GET','/sandbox/runs/' + encodeURIComponent(runId))
     };
